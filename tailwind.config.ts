@@ -30,7 +30,7 @@ export default {
           foreground: "hsl(var(--secondary-foreground))",
         },
         tertiary: {
-          DEFAULT: "var(--tertiary)",
+          DEFAULT: "var(--tertiary)", // Changed from hsl(var(--tertiary))
           foreground: "hsl(var(--tertiary-foreground))",
         },
         muted: {

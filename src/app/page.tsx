@@ -47,7 +47,6 @@ export default function Home() {
           <CarouselNext />
         </Carousel>
       </div>
-
       {/* For Baby / For Mom */}
       <div className=" w-[calc(100vw-8rem)] grid grid-cols-2 gap-4 mt-8">
         <div className="bg-primary rounded-lg p-4 text-center">
@@ -56,9 +55,8 @@ export default function Home() {
         </div>
         <div className="bg-secondary rounded-lg p-4 text-center">For Mom</div>
       </div>
-
       {/* Product Categories */}
-      <div className="w-[calc(100vw-8rem)] mt-8">
+      <div className="w-[calc(100vw-2rem)] sm:w-[calc(100vw-4rem)] lg:w-[calc(100vw-8rem)]">
         <div className="flex flex-col justify-center">
           <h5>Our Products</h5>
         </div>
@@ -80,7 +78,6 @@ export default function Home() {
           ))}
         </div>
       </div>
-
       {/* Some Products */}
       <div className="w-[calc(100vw-8rem)] mt-8">
         <div className="flex flex-col justify-center mb-6">
