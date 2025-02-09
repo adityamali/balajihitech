@@ -26,7 +26,7 @@ export default function Home() {
         <Carousel className="w-full">
           <CarouselContent className="rounded">
             <CarouselItem className="overflow-hidden">
-              <div className="relative w-full aspect-[16/9]">
+              <div className="relative w-full aspect-[2.39/1]">
                 <Image
                   src="/banners/bannerfix.png"
                   alt="banner"
