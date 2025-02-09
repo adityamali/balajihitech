@@ -7,9 +7,9 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="w-full top-0 left-0 absolute bg-transparent">
+    <div className="w-full top-0 left-0 absolute bg-transparent shadow-md md:shadow-none">
       <div className="flex justify-between items-center bg-primary"></div>
-      <div className="flex justify-between items-center px-4 sm:px-8 lg:px-16 py-8">
+      <div className="flex justify-between items-center px-4 sm:px-8 lg:px-16 py-6 md:py-8">
         <div className="text-xl sm:text-2xl font-bold">
           <div id="logo" className="text-primary-900">
             <Link href={"/"}>Balaji Hi Tech Garment</Link>

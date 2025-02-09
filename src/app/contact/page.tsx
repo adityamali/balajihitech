@@ -17,7 +17,7 @@ function page() {
         <div className="flex flex-col gap-4 w-full sm:px-0 mb-12">
           <div className="grid lg:grid-cols-4 row-span-1 gap-2 lg:gap-8 w-full sm:px-0">
             <Link href="tel:+918805240301">
-              <div className="flex flex-col items-center p-6 border rounded-lg">
+              <div className="flex flex-col items-center p-6 border rounded-lg hover:bg-gray-100">
                 <Phone className="w-10 h-10 text-primary mb-4" />
                 <h3 className="font-semibold mb-2">Phone</h3>
                 <p className="text-muted-foreground text-center">
@@ -26,7 +26,7 @@ function page() {
               </div>
             </Link>
             <Link href={"mailto:balajihitechg@gmail.com"}>
-              <div className="flex flex-col items-center p-6 border rounded-lg">
+              <div className="flex flex-col items-center p-6 border rounded-lg hover:bg-gray-100">
                 <Mail className="w-10 h-10 text-primary mb-4" />
                 <h3 className="font-semibold mb-2">Email</h3>
                 <p className="text-muted-foreground text-center">
@@ -35,7 +35,7 @@ function page() {
               </div>
             </Link>
             <Link href="https://maps.app.goo.gl/jrgajxfWHgKkHeSN6">
-              <div className="flex flex-col items-center p-6 border rounded-lg">
+              <div className="flex flex-col items-center p-6 border rounded-lg hover:bg-gray-100">
                 <MapPin className="w-10 h-10 text-primary mb-4" />
                 <h3 className="font-semibold mb-2">Location</h3>
                 <p className="text-muted-foreground text-center">
@@ -43,7 +43,7 @@ function page() {
                 </p>
               </div>
             </Link>
-            <div className="flex flex-col items-center p-6 border rounded-lg">
+            <div className="flex flex-col items-center p-6 border rounded-lg hover:bg-gray-100">
               <Clock className="w-10 h-10 text-primary mb-4" />
               <h3 className="font-semibold mb-2">Business Hours</h3>
               <p className="text-muted-foreground text-center">

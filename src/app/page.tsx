@@ -61,7 +61,7 @@ export default function Home() {
           <h5 className="font-bold">Our Products</h5>
         </div>
 
-        <div className="grid lg:grid-cols-6 grid-cols-2 items-center justify-center gap-10 p-6">
+        <div className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-2 items-center justify-center gap-10 p-6">
           {Cat.slice(0, 6).map((cat) => (
             <div
               key={cat.id}

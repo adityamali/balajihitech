@@ -53,38 +53,17 @@ const values = [
 export default function AboutPage() {
   return (
     <div className="flex flex-col items-center justify-center mt-24 pt-8 pb-16">
-      <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-8rem)]">
-        {/* Hero Section */}
-        <div className="relative h-[500px] rounded-xl overflow-hidden mb-24">
-          <Image
-            src="/about/hero.jpg"
-            alt="About Balaji Hi Tech"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
-          <div className="relative z-10 h-full flex flex-col items-center justify-center text-white p-8">
-            <motion.h1
-              className="text-5xl font-bold mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              Our Story
-            </motion.h1>
-            <motion.p
-              className="text-white/90 max-w-3xl text-center text-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              For over two decades, Balaji Hi Tech Garment has been at the
-              forefront of innovative garment manufacturing, combining
-              traditional craftsmanship with cutting-edge technology to deliver
-              excellence in every stitch.
-            </motion.p>
-          </div>
+      <div className="w-[calc(100vw-2rem)] sm:w-[calc(100vw-4rem)] lg:w-[calc(100vw-8rem)]">
+        {/* Contact Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold mb-4">About Us</h1>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            For over two decades, Balaji Hi Tech Garment has been at the
+            forefront of innovative garment manufacturing, combining traditional
+            craftsmanship with cutting-edge technology.
+          </p>
         </div>
+
         {/* Timeline Section */}
         <div className="mb-24">
           <motion.h2
