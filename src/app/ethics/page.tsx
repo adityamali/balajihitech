@@ -48,7 +48,7 @@ const ethicalPractices = [
 export default function EthicsPage() {
   return (
     <div className="flex flex-col items-center justify-center mt-24 pt-8 pb-16">
-      <div className="w-[calc(100vw-8rem)]">
+      <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-8rem)]">
         {/* Header with Background */}
         <div className="relative h-[400px] rounded-xl overflow-hidden mb-24">
           <Image
@@ -59,7 +59,9 @@ export default function EthicsPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/20" />
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-white p-8">
-            <h1 className="text-5xl font-bold mb-6">Our Ethical Commitment</h1>
+            <h1 className="text-5xl font-bold mb-6 text-center">
+              Our Ethical Commitment
+            </h1>
             <p className="text-white/90 max-w-2xl text-center text-lg">
               At Balaji Hi Tech Garment, we believe in responsible manufacturing
               that respects both people and the environment. Our ethical

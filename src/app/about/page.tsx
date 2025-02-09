@@ -53,7 +53,7 @@ const values = [
 export default function AboutPage() {
   return (
     <div className="flex flex-col items-center justify-center mt-24 pt-8 pb-16">
-      <div className="w-[calc(100vw-8rem)]">
+      <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-8rem)]">
         {/* Hero Section */}
         <div className="relative h-[500px] rounded-xl overflow-hidden mb-24">
           <Image
@@ -126,7 +126,6 @@ export default function AboutPage() {
           </div>
         </div>
         {/* Values Section */}
-        // Update the values section
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

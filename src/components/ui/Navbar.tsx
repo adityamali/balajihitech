@@ -48,7 +48,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm lg:hidden py-4 shadow-lg">
+          <div className="absolute top-full min-h-screen left-0 right-0 bg-white/95 backdrop-blur-sm lg:hidden py-4 shadow-lg z-50">
             <div className="flex flex-col items-center gap-4">
               <Link
                 href={"/"}

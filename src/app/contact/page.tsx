@@ -14,8 +14,8 @@ function page() {
           </p>
         </div>
         {/* Contact Cards */}
-        <div className="flex flex-col gap-4 w-full px-4 sm:px-0 mb-12">
-          <div className="grid grid-cols-1 lg:grid-cols-4 row-span-1 gap-8 w-full px-4 sm:px-0">
+        <div className="flex flex-col gap-4 w-full sm:px-0 mb-12">
+          <div className="grid lg:grid-cols-4 row-span-1 gap-2 lg:gap-8 w-full sm:px-0">
             <Link href="tel:+918805240301">
               <div className="flex flex-col items-center p-6 border rounded-lg">
                 <Phone className="w-10 h-10 text-primary mb-4" />
@@ -52,7 +52,7 @@ function page() {
             </div>
           </div>
           {/* Two Column Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-[calc(100vw-8rem)]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-[calc(100vw-2rem)] lg:w-[calc(100vw-8rem)]">
             {/* Left Column contact form*/}
             <div className="p-6 border rounded-lg">
               <h2 className="text-2xl font-semibold mb-6">Send us a Message</h2>

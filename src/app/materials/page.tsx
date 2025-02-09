@@ -43,7 +43,7 @@ const materials = [
 export default function MaterialsPage() {
   return (
     <div className="flex flex-col items-center justify-center mt-24 pt-8 pb-16">
-      <div className="w-[calc(100vw-8rem)]">
+      <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-8rem)]">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold mb-4">Our Materials</h1>
