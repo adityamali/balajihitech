@@ -19,28 +19,23 @@ import {
 import { Cat } from "@/lib/samples/cat";
 import { products } from "@/data/productData";
 
-export const metadata = {
-  title: "Contact Us | Balaji Hi Tech Garments",
-  description: "Contact Us | Balaji Hi Tech Garments",
-};
-
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center mt-24 pb-16">
-      {/* Carousel */}
       <div className="group w-[calc(100vw-2rem)] lg:w-[calc(100vw-8rem)] overflow-hidden">
         <Carousel className="w-full">
           <CarouselContent className="rounded">
             <CarouselItem className="overflow-hidden">
-              <Image
-                src="/banners/bannerfix.png"
-                alt="banner"
-                width={1920}
-                height={1080}
-                priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
-                className="object-cover w-full rounded-lg"
-              />
+              <div className="relative w-full aspect-[16/9]">
+                <Image
+                  src="/banners/bannerfix.png"
+                  alt="banner"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+                  className="object-cover rounded-lg"
+                />
+              </div>
             </CarouselItem>
           </CarouselContent>
           <CarouselPrevious />
