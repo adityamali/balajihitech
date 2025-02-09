@@ -3,32 +3,14 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const milestones = [
-  {
-    year: "1995",
-    title: "Our Beginning",
-    description:
-      "Founded with a vision to revolutionize garment manufacturing in India.",
-  },
-  {
-    year: "2005",
-    title: "International Expansion",
-    description:
-      "Expanded operations to serve global markets with premium quality garments.",
-  },
-  {
-    year: "2015",
-    title: "Sustainability Initiative",
-    description:
-      "Launched comprehensive sustainability programs and eco-friendly manufacturing.",
-  },
-  {
-    year: "2023",
-    title: "Innovation Hub",
-    description:
-      "Established state-of-the-art innovation center for sustainable textile development.",
-  },
-];
+// const milestones = [
+//   {
+//     year: "2007",
+//     title: "Our Beginning",
+//     description:
+//       "Founded with a vision to revolutionize garment manufacturing in India.",
+//   },
+// ];
 
 const values = [
   {
@@ -58,14 +40,14 @@ export default function AboutPage() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">About Us</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            For over two decades, Balaji Hi Tech Garment has been at the
-            forefront of innovative garment manufacturing, combining traditional
+            For over a decade, Balaji Hi Tech Garment has been at the forefront
+            of innovative garment manufacturing, combining traditional
             craftsmanship with cutting-edge technology.
           </p>
         </div>
 
         {/* Stats Section */}
-        {/* <motion.div
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -95,7 +77,7 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-        </motion.div> */}
+        </motion.div>
 
         {/* Values Section */}
         <motion.div
@@ -132,7 +114,7 @@ export default function AboutPage() {
         </motion.div>
 
         {/* Timeline Section */}
-        <div className="mb-24">
+        {/* <div className="mb-24">
           <motion.h2
             className="text-3xl font-bold text-center mb-16"
             initial={{ opacity: 0 }}
@@ -170,7 +152,7 @@ export default function AboutPage() {
               </motion.div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
