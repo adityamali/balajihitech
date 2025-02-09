@@ -29,11 +29,11 @@ CardHeader.displayName = "CardHeader";
 
 const CardImage = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLDivElement> & { loading?: "lazy" | "eager" }
+>(({ className, loading = "lazy", ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("aspect-square bg-gray-200 rounded-lg", className)}
+    className={cn("aspect-square bg-gray-100 rounded-lg", className)}
     {...props}
   />
 ));

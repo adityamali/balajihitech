@@ -33,15 +33,15 @@ export default function Home() {
           <CarouselContent className="rounded">
             <CarouselItem className="overflow-hidden">
               <Image
-                src="/images/banner.jpeg"
+                src="/banners/bannerfix.png"
                 alt="banner"
                 width={1920}
                 height={1080}
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
                 className="object-cover w-full rounded-lg"
               />
             </CarouselItem>
-            {/* <CarouselItem>...</CarouselItem>
-            <CarouselItem>...</CarouselItem> */}
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />

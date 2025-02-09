@@ -13,11 +13,11 @@ const Footer = () => {
               Quality garments for babies and mothers, crafted with care and
               comfort in mind.
             </p>
-            <div className="flex space-x-4">
-              <Link href="https://facebook.com" className="hover:text-primary">
+            <div className="flex space-x-4 pt-4">
+              <Link href="https://facebook.com" className="hover:text-white">
                 <Facebook size={24} />
               </Link>
-              <Link href="https://instagram.com" className="hover:text-primary">
+              <Link href="https://instagram.com" className="hover:text-white">
                 <Instagram size={24} />
               </Link>
             </div>
@@ -28,22 +28,22 @@ const Footer = () => {
             <h4 className="text-lg font-semibold">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="hover:text-primary">
+                <Link href="/" className="hover:text-white">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/products" className="hover:text-primary">
+                <Link href="/products" className="hover:text-white">
                   Products
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-primary">
+                <Link href="/about" className="hover:text-white">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contacts" className="hover:text-primary">
+                <Link href="/contacts" className="hover:text-white">
                   Contact
                 </Link>
               </li>
@@ -55,20 +55,17 @@ const Footer = () => {
             <h4 className="text-lg font-semibold">Products</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/products/baby" className="hover:text-primary">
+                <Link href="/products/baby" className="hover:text-white">
                   Baby Products
                 </Link>
               </li>
               <li>
-                <Link href="/products/mother" className="hover:text-primary">
+                <Link href="/products/mother" className="hover:text-white">
                   Mother Care
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/products/accessories"
-                  className="hover:text-primary"
-                >
+                <Link href="/products/accessories" className="hover:text-white">
                   Accessories
                 </Link>
               </li>
@@ -80,15 +77,15 @@ const Footer = () => {
             <h4 className="text-lg font-semibold">Contact Us</h4>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <MapPin size={20} className="text-primary" />
+                <MapPin size={20} className="text-black" />
                 <span>123, Industrial Area, Tirupur</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone size={20} className="text-primary" />
+                <Phone size={20} className="text-black" />
                 <span>+91 98765 43210</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail size={20} className="text-primary" />
+                <Mail size={20} className="text-black" />
                 <span>info@balajihitech.com</span>
               </div>
             </div>
@@ -100,6 +97,10 @@ const Footer = () => {
           <p className="px-4">
             © {new Date().getFullYear()} Balaji Hi Tech Garment. All rights
             reserved.
+            {" • "}
+            <Link href="/privacy" className="hover:text-white">
+              Privacy Policy
+            </Link>
           </p>
         </div>
       </div>
