@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Navbar = () => {
@@ -7,28 +8,28 @@ const Navbar = () => {
       <div className="flex justify-between items-center px-16 py-8">
         <div className="text-2xl font-bold">
           <div id="logo" className="text-primary-900">
-            <a href="#">Balaji Hi Tech Garment</a>
+            <Link href={"/"}>Balaji Hi Tech Garment</Link>
           </div>
         </div>
         <div className="flex gap-8">
-          <a href="#" className="p-2">
+          <Link href={"/"} className="p-2">
             Home
-          </a>
-          <a href="#" className="p-2">
+          </Link>
+          <Link href={"/products"} className="p-2">
             Products
-          </a>
-          <a href="#" className="p-2">
+          </Link>
+          <Link href={"/materials"} className="p-2">
             Materials
-          </a>
-          <a href="#" className="p-2">
+          </Link>
+          <Link href={"/about"} className="p-2">
             About
-          </a>
-          <a href="#" className="p-2">
+          </Link>
+          <Link href={"/ethics"} className="p-2">
             Ethics
-          </a>
-          <a href="#" className="bg-primary py-2 px-4 rounded">
+          </Link>
+          <Link href={"/contact"} className="bg-primary py-2 px-4 rounded">
             Contact
-          </a>
+          </Link>
         </div>
       </div>
     </div>

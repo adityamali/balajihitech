@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import {
   Carousel,
   CarouselContent,
@@ -13,15 +15,18 @@ import {
   CardPrice,
   CardTitle,
 } from "@/components/ui/card";
-import Image from "next/image";
 
 import { Cat } from "@/lib/samples/cat";
-
 import { products } from "@/data/productData";
+
+export const metadata = {
+  title: "Contact Us | Balaji Hi Tech Garments",
+  description: "Contact Us | Balaji Hi Tech Garments",
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center py-2 mt-24">
+    <div className="flex flex-col items-center justify-center mt-24 pb-16">
       {/* Carousel */}
       <div className="group w-[calc(100vw-8rem)] overflow-hidden">
         <Carousel className="w-full">
@@ -35,8 +40,8 @@ export default function Home() {
                 className="object-cover w-full h-[600px] rounded-lg"
               />
             </CarouselItem>
-            <CarouselItem>...</CarouselItem>
-            <CarouselItem>...</CarouselItem>
+            {/* <CarouselItem>...</CarouselItem>
+            <CarouselItem>...</CarouselItem> */}
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />
@@ -44,7 +49,6 @@ export default function Home() {
       </div>
 
       {/* For Baby / For Mom */}
-
       <div className=" w-[calc(100vw-8rem)] grid grid-cols-2 gap-4 mt-8">
         <div className="bg-primary rounded-lg p-4 text-center">
           For Baby
@@ -54,7 +58,6 @@ export default function Home() {
       </div>
 
       {/* Product Categories */}
-
       <div className="w-[calc(100vw-8rem)] mt-8">
         <div className="flex flex-col justify-center">
           <h5>Our Products</h5>
