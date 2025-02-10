@@ -16,8 +16,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { Cat } from "@/lib/samples/cat";
-import { products } from "@/data/productData";
+import { categories, products } from "@/data/data";
 
 export default function Home() {
   return (
@@ -57,14 +56,14 @@ export default function Home() {
         </div>
 
         <div className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-2 items-center justify-center gap-10 p-6">
-          {Cat.slice(0, 6).map((cat) => (
+          {categories.slice(0, 6).map((category) => (
             <div
-              key={cat.id}
+              key={category.catID}
               className="bg-secondary rounded-full aspect-square h-32 w-32 p-6 text-center"
             >
               <Image
-                src={cat.image}
-                alt={cat.name}
+                src={category.image}
+                alt={category.name}
                 width={100}
                 height={100}
                 className="object-cover h-full w-full"
