@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { products } from "@/data/productData";
+import { products } from "@/data/data";
 import { notFound } from "next/navigation";
 
 export default function ProductPage({ params }: { params: { id: string } }) {
