@@ -56,7 +56,7 @@ function page() {
         {/* Filters */}
         <div
           id="filters"
-          className={`w-full lg:w-[20%] lg:sticky lg:top-24 lg:h-fit transition-all duration-300 ease-in-out ${
+          className={`w-full lg:w-[20%] lg:sticky lg:top-24 lg:h-fit md:mt-6 transition-all duration-300 ease-in-out ${
             isFiltersOpen
               ? "max-h-[500px] opacity-100"
               : "max-h-0 opacity-0 lg:max-h-none lg:opacity-100"
