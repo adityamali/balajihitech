@@ -4,29 +4,35 @@ import { categories, madeFor } from "@/data/data";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-export default function Filters() {
-  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState<
-    string | null
-  >(null);
-  const [selectedMadeForFilter, setSelectedMadeForFilter] =
-    useState<madeFor | null>(null);
+interface FiltersProps {
+  selectedCategory: string | null;
+  setSelectedCategory: (category: string | null) => void;
+  selectedMadeFor: madeFor | null;
+  setSelectedMadeFor: (madeFor: madeFor | null) => void;
+}
 
-  // Get unique categories from Cat data
+export default function Filters({
+  selectedCategory,
+  setSelectedCategory,
+  selectedMadeFor,
+  setSelectedMadeFor,
+}: FiltersProps) {
+  // Remove local state and use props instead
   const uniqueCategories = categories.map((category) => category.name);
   const madeForValues = Object.values(madeFor);
 
   return (
-    <div className="w-full mb-8 space-y-6 p-6 bg-gray-100 rounded-lg mt-24">
+    <div className="w-full mb-8 space-y-6 p-6 bg-gray-100 rounded-lg">
       <div>
         <h3 className="mb-4">Made For</h3>
         <div className="grid grid-cols-1 gap-3">
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => setSelectedMadeForFilter(null)}
+            onClick={() => setSelectedMadeFor(null)}
             className={`px-4 py-2 rounded-full text-sm text-left transition-colors
               ${
-                selectedMadeForFilter === null
+                selectedMadeFor === null
                   ? "bg-primary text-white"
                   : "bg-primary/10 hover:bg-primary/20"
               }`}
@@ -38,10 +44,10 @@ export default function Filters() {
               key={madeFor}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => setSelectedMadeForFilter(madeFor)}
+              onClick={() => setSelectedMadeFor(madeFor)}
               className={`px-4 py-2 rounded-full text-sm text-left transition-colors
                 ${
-                  selectedMadeForFilter === madeFor
+                  selectedMadeFor === madeFor
                     ? "bg-primary text-white"
                     : "bg-primary/10 hover:bg-primary/20"
                 }`}
@@ -51,16 +57,17 @@ export default function Filters() {
           ))}
         </div>
       </div>
+
       <div>
         <h3 className="mb-4">Filter by Category</h3>
         <div className="grid grid-cols-1 gap-3">
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => setSelectedCategoryFilter(null)}
+            onClick={() => setSelectedCategory(null)}
             className={`px-4 py-2 rounded-full text-sm text-left transition-colors
               ${
-                selectedCategoryFilter === null
+                selectedCategory === null
                   ? "bg-primary text-white"
                   : "bg-primary/10 hover:bg-primary/20"
               }`}
@@ -72,10 +79,10 @@ export default function Filters() {
               key={category}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => setSelectedCategoryFilter(category)}
+              onClick={() => setSelectedCategory(category)}
               className={`px-4 py-2 rounded-full text-sm text-left transition-colors
                 ${
-                  selectedCategoryFilter === category
+                  selectedCategory === category
                     ? "bg-primary text-white"
                     : "bg-primary/10 hover:bg-primary/20"
                 }`}

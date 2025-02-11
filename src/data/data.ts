@@ -17,6 +17,7 @@ export interface Product {
   price: number;
   description: string;
   catID: number;
+  madeFor: string;
   image: string;
   sizes?: string[];
   colors?: string[];
@@ -84,6 +85,7 @@ export const products: Product[] = [
     description:
       "Soft and comfortable cotton romper perfect for your little one.",
     catID: 1,
+    madeFor: madeFor.BABY,
     image: "/products/romper.jpg",
     sizes: ["0-3M", "3-6M", "6-12M"],
     colors: ["#FFC0CB", "#87CEEB", "#FFFFFF"],
@@ -95,7 +97,8 @@ export const products: Product[] = [
     title: "Baby T-Shirt",
     price: 299,
     description: "Comfortable cotton t-shirt for your little one.",
-    catID: 1,
+    catID: 2,
+    madeFor: madeFor.BABY,
     image: "/products/tshirt.jpg",
     sizes: ["S", "M", "L", "XL"],
     colors: ["#FFC0CB", "#87CEEB", "#FFFFFF"],
@@ -108,6 +111,7 @@ export const products: Product[] = [
     price: 199,
     description: "Comfortable cotton short for your little one.",
     catID: 1,
+    madeFor: madeFor.BABY,
     image: "/products/short.jpg",
     sizes: ["S", "M", "L", "XL"],
     colors: ["#FFC0CB", "#87CEEB", "#FFFFFF"],
