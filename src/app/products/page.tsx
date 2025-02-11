@@ -72,7 +72,7 @@ function page() {
 
         <div className="flex flex-col gap-4 w-full p-2 lg:p-6">
           {/* Search */}
-          <div className="sticky top-24 bg-white/80 backdrop-blur-sm z-10 py-4">
+          <div className="top-24 bg-white/80 backdrop-blur-sm z-10 py-4">
             <Search
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}

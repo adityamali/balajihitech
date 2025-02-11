@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Prevent indexing of sensitive routes
+Disallow: /api/
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://balajihitech.com/sitemap.xml
