@@ -102,6 +102,7 @@ const Footer = () => {
               Privacy Policy
             </Link>
           </p>
+          <p>Designed and developed by <Link href={"https://adityamali.com"} className="hover:text-white font-semibold pl-1">Aditya Mali</Link></p>
         </div>
       </div>
     </footer>

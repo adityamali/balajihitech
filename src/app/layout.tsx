@@ -83,9 +83,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={"antialiased bg-background"}>
         <Navbar />
         {children}
         <Footer />

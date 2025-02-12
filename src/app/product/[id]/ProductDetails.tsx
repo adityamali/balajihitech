@@ -1,8 +1,9 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { Product } from "@/data/data";
 import { useState } from "react";
+import Image from "next/image";
+import { Phone } from "lucide-react";
 
 export default function ProductDetails({ product }: { product: Product }) {
   const [selectedSize, setSelectedSize] = useState<string>();
@@ -24,7 +25,7 @@ export default function ProductDetails({ product }: { product: Product }) {
       </div>
 
       {/* Size Selection */}
-      {product.sizes && (
+      {/* {product.sizes && (
         <div className="space-y-4">
           <h2 className="text-xl font-semibold">Select Size</h2>
           <div className="flex gap-4">
@@ -43,10 +44,11 @@ export default function ProductDetails({ product }: { product: Product }) {
             ))}
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Color Selection */}
-      {product.colors && (
+
+      {/* {product.colors && (
         <div className="space-y-4">
           <h2 className="text-xl font-semibold">Available Colors</h2>
           <div className="flex gap-4">
@@ -62,27 +64,44 @@ export default function ProductDetails({ product }: { product: Product }) {
             ))}
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Add to Cart Button */}
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={() => {
-          if (product.sizes && !selectedSize) {
-            alert("Please select a size");
-            return;
-          }
-          if (product.colors && !selectedColor) {
-            alert("Please select a color");
-            return;
-          }
-          // Add to cart logic here
-        }}
-        className="bg-primary text-white py-3 px-6 rounded-md hover:opacity-90 transition-opacity mt-8"
-      >
-        Add to Cart
-      </motion.button>
+      <div className="flex justify-center items-center gap-2 w-full">
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={() => {
+            window.open(
+              `${process.env.NEXT_PUBLIC_WA_BASE_URL}${encodeURIComponent(
+                product.title
+              )}`,
+              "_blank"
+            );
+          }}
+          className="bg-[#25D366] text-black py-3 px-6 rounded-md hover:opacity-90 transition-opacity mt-8 flex justify-center items-center gap-2 w-full"
+        >
+          <Image
+            src="/whatsapp.svg"
+            alt="WhatsApp Logo"
+            width={20}
+            height={20}
+          />
+          Connect on WhatsApp
+        </motion.button>
+
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={() => {
+            window.location.href = "tel:7709953054";
+          }}
+          className="bg-black text-white py-3 px-6 rounded-md hover:opacity-90 transition-opacity mt-8 flex justify-center items-center gap-2 w-full"
+        >
+          <Phone size={20} className="text-white" />
+          Connect on Call
+        </motion.button>
+      </div>
 
       {/* Additional Information */}
       <div className="border-t pt-6 mt-6 space-y-4">

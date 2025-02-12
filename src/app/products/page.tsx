@@ -1,6 +1,7 @@
 "use client";
 import { products, categories, madeFor } from "@/data/data";
 import React, { useState, useMemo } from "react";
+import Fuse from "fuse.js";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import {
   Card,
@@ -9,7 +10,7 @@ import {
   CardPrice,
   CardTitle,
 } from "@/components/ui/card";
-import { Search } from "@/components/ui/search";
+import { ProductSearch } from "@/components/ui/ProductSearch";
 import Filters from "@/components/ui/Filters";
 import Link from "next/link";
 
@@ -19,24 +20,44 @@ function page() {
   const [selectedMadeFor, setSelectedMadeFor] = useState<madeFor | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const fuse = useMemo(
+    () =>
+      new Fuse(products, {
+        keys: ["title", "description"],
+        threshold: 0.3,
+        minMatchCharLength: 2,
+        includeScore: true,
+        shouldSort: true,
+        distance: 100,
+      }),
+    []
+  );
+
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
+    let results = products;
+
+    // Apply fuzzy search if query exists
+    if (searchQuery.trim()) {
+      const fuseResults = fuse.search(searchQuery);
+      results = fuseResults.map((result) => result.item);
+    }
+
+    // Apply filters
+    return results.filter((product) => {
+      const category = categories.find((cat) => cat.catID === product.catID);
+
       const matchesCategory = selectedCategory
         ? categories.find((cat) => cat.name === selectedCategory)?.catID ===
           product.catID
         : true;
 
       const matchesMadeFor = selectedMadeFor
-        ? product.madeFor === selectedMadeFor
+        ? category?.madeFor === selectedMadeFor
         : true;
 
-      const matchesSearch = product.title
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
-
-      return matchesCategory && matchesMadeFor && matchesSearch;
+      return matchesCategory && matchesMadeFor;
     });
-  }, [selectedCategory, selectedMadeFor, searchQuery]);
+  }, [searchQuery, selectedCategory, selectedMadeFor, fuse]);
 
   return (
     <div className="flex min-h-screen w-full justify-center items-start gap-4 mt-24 pb-16">
@@ -72,13 +93,13 @@ function page() {
 
         <div className="flex flex-col gap-4 w-full p-2 lg:p-6">
           {/* Search */}
-          <div className="top-24 bg-white/80 backdrop-blur-sm z-10 py-4">
-            <Search
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+          <div className="bg-white/80 backdrop-blur-sm z-10 py-4">
+            <ProductSearch
               placeholder="Search products..."
+              onSearch={setSearchQuery}
             />
           </div>
+
           {/* Product Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {filteredProducts.map((product) => (

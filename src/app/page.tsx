@@ -27,7 +27,7 @@ export default function Home() {
             <CarouselItem className="overflow-hidden">
               <div className="relative w-full aspect-[2.39/1]">
                 <Image
-                  src="/banners/bannerfix.png"
+                  src="/banners/finestManufacturing.png"
                   alt="banner"
                   fill
                   priority
