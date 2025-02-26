@@ -93,6 +93,8 @@ body {
   }
 
   body {
-    @apply bg-background text-foreground;
+    /* @apply bg-background text-foreground; */
+    background-color: #4949d3;
+    color: hsl(var(--foreground));
   }
 }

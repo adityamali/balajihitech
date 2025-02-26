@@ -69,12 +69,14 @@ const CardDescription = React.forwardRef<
 ));
 CardDescription.displayName = "CardDescription";
 
-const CardPrice = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-  <p ref={ref} className={cn("text-lg font-semibold", className)} {...props} />
-));
-CardPrice.displayName = "CardPrice";
+// const CardPrice = React.forwardRef<
+//   HTMLParagraphElement,
+//   React.HTMLAttributes<HTMLParagraphElement>
+// >(({ className, ...props }, ref) => (
+//   <p ref={ref} className={cn("text-lg font-semibold", className)} {...props} />
+// ));
+// CardPrice.displayName = "CardPrice";
 
-export { Card, CardHeader, CardImage, CardTitle, CardDescription, CardPrice };
+// export { Card, CardHeader, CardImage, CardTitle, CardDescription, CardPrice };
+
+export { Card, CardHeader, CardImage, CardTitle, CardDescription };

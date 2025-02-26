@@ -1,24 +1,50 @@
 "use client";
 import { products, categories, madeFor } from "@/data/data";
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Fuse from "fuse.js";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import {
   Card,
   CardHeader,
   CardImage,
-  CardPrice,
+  // CardPrice,
   CardTitle,
 } from "@/components/ui/card";
 import { ProductSearch } from "@/components/ui/ProductSearch";
-import Filters from "@/components/ui/Filters";
+// import Filters from "@/components/ui/Filters";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { useSearchParams, useRouter } from "next/navigation";
 
 function page() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedMadeFor, setSelectedMadeFor] = useState<madeFor | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const madeForValues = Object.values(madeFor);
+
+  // Set initial madeFor filter from URL params and update URL when filter changes
+  useEffect(() => {
+    const madeForParam = searchParams.get("madeFor");
+    if (
+      madeForParam &&
+      Object.values(madeFor).includes(madeForParam as madeFor)
+    ) {
+      setSelectedMadeFor(madeForParam as madeFor);
+    }
+  }, [searchParams]);
+
+  const handleMadeForChange = (value: madeFor | null) => {
+    setSelectedMadeFor(value);
+    if (value) {
+      router.push(`/products?madeFor=${value}`);
+    } else {
+      router.push("/products");
+    }
+  };
 
   const fuse = useMemo(
     () =>
@@ -74,23 +100,6 @@ function page() {
           )}
         </button>
 
-        {/* Filters */}
-        <div
-          id="filters"
-          className={`w-full lg:w-[20%] lg:sticky lg:top-24 lg:h-fit md:mt-6 transition-all duration-300 ease-in-out ${
-            isFiltersOpen
-              ? "max-h-[500px] opacity-100"
-              : "max-h-0 opacity-0 lg:max-h-none lg:opacity-100"
-          } overflow-hidden`}
-        >
-          <Filters
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            selectedMadeFor={selectedMadeFor}
-            setSelectedMadeFor={setSelectedMadeFor}
-          />
-        </div>
-
         <div className="flex flex-col gap-4 w-full p-2 lg:p-6">
           {/* Search */}
           <div className="bg-white/80 backdrop-blur-sm z-10 py-4">
@@ -98,6 +107,41 @@ function page() {
               placeholder="Search products..."
               onSearch={setSearchQuery}
             />
+          </div>
+
+          <div>
+            <h3 className="mb-4">Made For</h3>
+            <div className="flex">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => handleMadeForChange(null)}
+                className={`px-4 py-2 rounded-full text-sm text-left transition-colors
+              ${
+                selectedMadeFor === null
+                  ? "bg-primary text-white"
+                  : "bg-primary/10 hover:bg-primary/20"
+              }`}
+              >
+                All
+              </motion.button>
+              {madeForValues.map((madeFor) => (
+                <motion.button
+                  key={madeFor}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => handleMadeForChange(madeFor)}
+                  className={`px-4 py-2 rounded-full text-sm text-left transition-colors
+                ${
+                  selectedMadeFor === madeFor
+                    ? "bg-primary text-white"
+                    : "bg-primary/10 hover:bg-primary/20"
+                }`}
+                >
+                  {madeFor}
+                </motion.button>
+              ))}
+            </div>
           </div>
 
           {/* Product Grid */}
@@ -108,7 +152,7 @@ function page() {
                   <CardImage />
                   <CardHeader>
                     <CardTitle className="text-base">{product.title}</CardTitle>
-                    <CardPrice>Rs {product.price}/-</CardPrice>
+                    {/* <CardPrice>Rs {product.price}/-</CardPrice> */}
                   </CardHeader>
                 </Card>
               </Link>

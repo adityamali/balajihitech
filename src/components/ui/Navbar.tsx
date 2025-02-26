@@ -2,12 +2,29 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Add scroll listener
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="w-full top-0 left-0 absolute bg-transparent shadow-md md:shadow-none">
+    <motion.div
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className={`w-full top-0 left-0 fixed bg-white/80 backdrop-blur-sm transition-all duration-300 z-50 ${
+        isScrolled ? "shadow-md" : ""
+      }`}
+    >
       <div className="flex justify-between items-center bg-primary"></div>
       <div className="flex justify-between items-center px-4 sm:px-8 lg:px-16 py-6 md:py-8">
         <div className="text-xl sm:text-2xl font-bold">
@@ -96,7 +113,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
