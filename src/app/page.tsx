@@ -44,7 +44,7 @@ export default function Home() {
         </Carousel>
       </div>
       {/* For Baby / For Mom */}
-      <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-8rem)] grid grid-cols-2 gap-4 mt-8">
+      <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-8rem)] grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
         <Link
           href="/products?madeFor=mother"
           className="relative rounded-lg p-6 py-20 text-center flex flex-col items-center justify-center gap-4 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:brightness-105 active:brightness-90 active:scale-95"
