@@ -76,18 +76,32 @@ const Footer = () => {
           <div className="text-center sm:text-left">
             <h4 className="text-lg font-semibold">Contact Us</h4>
             <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <MapPin size={20} className="text-black" />
-                <span>123, Industrial Area, Tirupur</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone size={20} className="text-black" />
-                <span>+91 98765 43210</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail size={20} className="text-black" />
-                <span>info@balajihitech.com</span>
-              </div>
+              <Link
+                href="https://www.google.com/maps/place/16°42'26.4%22N+74°27'35.4%22E/@16.7061362,74.4549213,3141m/data=!3m1!1e3!4m4!3m3!8m2!3d16.7073333!4d74.4598333?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D"
+                className="hover:text-white"
+              >
+                <div className="flex items-center space-x-3">
+                  <MapPin size={20} className="text-black" />
+                  <span>
+                    G.NO. -486, Bhatale Mala, Datt Nagar, Ichalkaranji - 416115
+                  </span>
+                </div>
+              </Link>
+              <Link href="tel:+919881372830" className="hover:text-white">
+                <div className="flex items-center space-x-3">
+                  <Phone size={20} className="text-black" />
+                  <span>+91 9881372830</span>
+                </div>
+              </Link>
+              <Link
+                href="mailto:balajihitechg@gmail.com"
+                className="hover:text-white"
+              >
+                <div className="flex items-center space-x-3">
+                  <Mail size={20} className="text-black" />
+                  <span>balajihitechg@gmail.com</span>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -102,7 +116,15 @@ const Footer = () => {
               Privacy Policy
             </Link>
           </p>
-          <p>Designed and developed by <Link href={"https://adityamali.com"} className="hover:text-white font-semibold pl-1">Aditya Mali</Link></p>
+          <p>
+            Designed and developed by{" "}
+            <Link
+              href={"https://adityamali.com"}
+              className="hover:text-white font-semibold pl-1"
+            >
+              Aditya Mali
+            </Link>
+          </p>
         </div>
       </div>
     </footer>
