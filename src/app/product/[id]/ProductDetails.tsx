@@ -16,9 +16,6 @@ export default function ProductDetails({ product }: { product: Product }) {
       className="flex flex-col space-y-6"
     >
       <h1 className="text-3xl font-bold">{product.title}</h1>
-      <p className="text-2xl font-semibold text-primary">
-        Rs {product.price}/-
-      </p>
       <div className="space-y-4">
         <h2 className="text-xl font-semibold">Product Details</h2>
         <p className="text-muted-foreground">{product.description}</p>

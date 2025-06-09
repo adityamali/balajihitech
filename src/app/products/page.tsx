@@ -16,7 +16,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useSearchParams, useRouter } from "next/navigation";
 
-function page() {
+function Page() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
@@ -168,7 +168,7 @@ function page() {
         </div>
       </div>
     </div>
-  );
+  );  
 }
 
-export default page;
+export default Page;

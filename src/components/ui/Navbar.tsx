@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -29,7 +30,9 @@ const Navbar = () => {
       <div className="flex justify-between items-center px-4 sm:px-8 lg:px-16 py-6 md:py-8">
         <div className="text-xl sm:text-2xl font-bold">
           <div id="logo" className="text-primary-900">
-            <Link href={"/"}>Balaji Hi Tech Garment</Link>
+            <Link href={"/"}>
+              <Image src={"/icon.png"} alt="logo" width={500} height={100} />
+            </Link>
           </div>
         </div>
 
@@ -42,7 +45,7 @@ const Navbar = () => {
         </button>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex gap-8">
+        <div className="hidden lg:flex gap-8 text-lg">
           <Link href={"/"} className="p-2">
             Home
           </Link>
