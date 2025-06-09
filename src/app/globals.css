@@ -90,11 +90,61 @@ body {
 
   html {
     font-family: "Inria Serif", serif;
+    scroll-behavior: smooth;
   }
 
   body {
-    /* @apply bg-background text-foreground; */
-    background-color: #4949d3;
+    @apply bg-background text-foreground;
     color: hsl(var(--foreground));
   }
+}
+
+/* Custom animations */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+}
+
+/* Image hover effects */
+.image-hover {
+  overflow: hidden;
+}
+
+.image-hover img {
+  transition: transform 0.5s ease;
+}
+
+.image-hover:hover img {
+  transform: scale(1.05);
+}
+
+/* Fix for mobile menu scrolling issues */
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+/* Improved focus styles for accessibility */
+a:focus-visible, 
+button:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
+}
+
+/* Smooth transitions */
+a, button {
+  @apply transition-all duration-200;
 }

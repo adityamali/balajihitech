@@ -15,7 +15,6 @@ export interface Category {
 export interface Product {
   id: string;
   title: string;
-  price: number;
   description: string;
   catID: number;
   image: string;
@@ -208,7 +207,6 @@ export const products: Product[] = [
   {
     id: "1",
     title: "Adjustable Reusable Cloth Diapers with Snap Buttons",
-    price: 599,
     description: "Soft and comfortable reusable cloth diaper with adjustable snap buttons for a perfect fit.",
     catID: 1,
     image: "/products/cloth-diaper-snap.jpg",
@@ -218,7 +216,6 @@ export const products: Product[] = [
   {
     id: "2",
     title: "Adjustable Reusable Cloth Diapers with Fine Velcro",
-    price: 599,
     description: "Soft and comfortable reusable cloth diaper with fine velcro adjustment for a secure fit.",
     catID: 1,
     image: "/products/cloth-diaper-velcro.jpg",
@@ -228,7 +225,6 @@ export const products: Product[] = [
   {
     id: "3",
     title: "Basic Cotton Nappy",
-    price: 199,
     description: "Breathable and lightweight cotton nappy for everyday comfort.",
     catID: 2,
     image: "/products/basic-cotton-nappy.jpg",
@@ -238,7 +234,6 @@ export const products: Product[] = [
   {
     id: "4",
     title: "Padded Dry Feel Nappy",
-    price: 249,
     description: "Padded nappy with a dry feel layer to keep babies comfortable for longer hours.",
     catID: 2,
     image: "/products/padded-dry-feel-nappy.jpg",
@@ -248,7 +243,6 @@ export const products: Product[] = [
   {
     id: "5",
     title: "Padded Nappy",
-    price: 229,
     description: "Soft, cushioned nappy providing extra comfort and protection.",
     catID: 2,
     image: "/products/padded-nappy.jpg",
@@ -258,7 +252,6 @@ export const products: Product[] = [
   {
     id: "6",
     title: "High Absorbent Dry Feel Insert/Soaker",
-    price: 299,
     description: "Super absorbent insert with dry feel technology for leak protection.",
     catID: 3,
     image: "/products/high-absorbent-dry-feel-insert.jpg",
@@ -268,7 +261,6 @@ export const products: Product[] = [
   {
     id: "7",
     title: "High Absorbent Cotton Insert",
-    price: 249,
     description: "100% cotton insert with high absorption for extended dryness.",
     catID: 3,
     image: "/products/high-absorbent-cotton-insert.jpg",
@@ -278,7 +270,6 @@ export const products: Product[] = [
   {
     id: "8",
     title: "High Absorbent Bamboo Insert",
-    price: 269,
     description: "Bamboo fabric insert offering superior absorbency and softness.",
     catID: 3,
     image: "/products/high-absorbent-bamboo-insert.jpg",
@@ -288,7 +279,6 @@ export const products: Product[] = [
   {
     id: "9",
     title: "High Absorbent Folded Insert",
-    price: 279,
     description: "Folded insert design for customizable absorbency levels.",
     catID: 3,
     image: "/products/high-absorbent-folded-insert.jpg",
@@ -298,7 +288,6 @@ export const products: Product[] = [
   {
     id: "10",
     title: "Waterproof Baby Bib",
-    price: 199,
     description: "Mess-free, waterproof bib to protect clothing during meals.",
     catID: 4,
     image: "/products/waterproof-bib.jpg",
@@ -308,7 +297,6 @@ export const products: Product[] = [
   {
     id: "11",
     title: "Reversible Baby Bib",
-    price: 249,
     description: "Soft, reversible baby bib with two stylish sides.",
     catID: 4,
     image: "/products/reversible-bib.jpg",
@@ -318,7 +306,6 @@ export const products: Product[] = [
   {
     id: "12",
     title: "Reusable Cloth Sanitary Pads",
-    price: 399,
     description: "Eco-friendly, reusable sanitary pads for sustainable menstrual care.",
     catID: 8,
     image: "/products/reusable-sanitary-pad.jpg",
@@ -328,7 +315,6 @@ export const products: Product[] = [
   {
     id: "13",
     title: "Period Panty",
-    price: 599,
     description: "Leak-proof period panty with multi-layer absorption technology.",
     catID: 9,
     image: "/products/period-panty.jpg",
@@ -338,7 +324,6 @@ export const products: Product[] = [
   {
     id: "14",
     title: "Nursing Pad",
-    price: 299,
     description: "Soft, absorbent nursing pads for extra leak protection.",
     catID: 10,
     image: "/products/nursing-pad.jpg",
@@ -348,7 +333,6 @@ export const products: Product[] = [
   {
     id: "15",
     title: "Maternity Nursing Cover",
-    price: 499,
     description: "Lightweight and breathable nursing cover for mothers.",
     catID: 11,
     image: "/products/nursing-cover.jpg",
@@ -358,7 +342,6 @@ export const products: Product[] = [
   {
     id: "16",
     title: "Muslin Swaddle",
-    price: 399,
     description: "Soft, breathable muslin swaddle for newborns.",
     catID: 7,
     image: "/products/muslin-swaddle.jpg",

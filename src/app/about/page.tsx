@@ -1,5 +1,6 @@
 "use client";
 
+import CompanyInfo from "@/components/CompanyInfo";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -39,15 +40,16 @@ export default function AboutPage() {
         {/* Contact Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">About Us</h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          {/* <p className="text-muted-foreground max-w-2xl mx-auto">
             For over a decade, Balaji Hi Tech Garment has been at the forefront
             of innovative garment manufacturing, combining traditional
             craftsmanship with cutting-edge technology.
-          </p>
+          </p> */}
+        <CompanyInfo />
         </div>
 
         {/* Stats Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -77,7 +79,8 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
+
 
         {/* Values Section */}
         <motion.div

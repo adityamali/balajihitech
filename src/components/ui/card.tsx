@@ -10,7 +10,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-lg text-card-foreground bg-background w-[250px] hover:brightness-95 transition-transform",
+      "rounded-lg text-card-foreground bg-background w-full shadow-sm hover:shadow-md hover:brightness-95 transition-all duration-300",
       className
     )}
     {...props}
@@ -36,7 +36,7 @@ const CardImage = React.forwardRef<
 >(({ className, loading = "lazy", ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("aspect-square bg-gray-100 rounded-lg", className)}
+    className={cn("aspect-square bg-gray-100 rounded-t-lg overflow-hidden image-hover", className)}
     {...props}
   />
 ));
