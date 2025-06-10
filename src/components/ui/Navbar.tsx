@@ -109,7 +109,7 @@ const Navbar = () => {
               animate={{ opacity: 1, height: "100vh" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed top-[73px] left-0 right-0 bg-white/98 backdrop-blur-md lg:hidden py-4 shadow-lg z-50 overflow-auto"
+              className="fixed top-[73px] left-0 right-0 bg-white/98 backdrop-blur-md lg:hidden py-4 shadow-lg z-50 overflow-auto bg-white"
             >
               <nav className="flex flex-col items-center gap-6 pt-8">
                 {navLinks.map((link) => (
