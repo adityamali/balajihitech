@@ -28,8 +28,8 @@ export default function Home() {
 
                 {/* Overlay Text Content */}
                 <div className="relative z-10 h-full w-full p-8 md:p-16">
-                  <div className="w-full h-full flex flex-col justify-between">
-                    <h1 className="text-3xl md:text-5xl font-bold text-black lg:text-white text-left px-4 sm:px-20 font-[helvetica] animate-fade-in">
+                  <div className="w-full h-full flex flex-col justify-center gap-16">
+                    <h1 className="text-3xl md:text-5xl font-bold text-black lg:text-white text-center md:text-left px-4 sm:px-20 font-[helvetica] animate-fade-in">
                       ECO FRIENDLY <br/> TEXTILE INNOVATION
                     </h1>
                     <h1 className="text-3xl md:text-5xl font-bold text-primary text-right px-4 sm:px-20 font-[helvetica] animate-fade-in hidden lg:block">
@@ -40,7 +40,7 @@ export default function Home() {
                       height={100} 
                       width={300} 
                       alt="Balaji Hi-Tech Garments logo" 
-                      className="mx-4 sm:mx-20"
+                      className="mx-4 sm:mx-20 hidden lg:block"
                     />
                   </div>
                 </div>
@@ -62,7 +62,7 @@ export default function Home() {
                 </div>
 
                 {/* Overlay Text Content */}
-                <div className="relative z-10 h-full w-full p-8 md:p-16">
+                {/* <div className="relative z-10 h-full w-full p-8 md:p-16">
                   <div className="w-full h-full flex flex-col justify-end">
                     <Image 
                       src="/icon.png" 
@@ -71,7 +71,7 @@ export default function Home() {
                       alt="Balaji Hi-Tech Garments logo"
                     />
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           ]}
