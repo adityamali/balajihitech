@@ -286,6 +286,7 @@ export const products: Product[] = [
     title: "Reusable Cloth Sanitary Pads",
     description: "Eco-friendly, reusable sanitary pads for sustainable menstrual care.",
     catID: 8,
+    image: "/products/12.png",
     material: "Cotton, Bamboo Charcoal Layer",
   },
   {
@@ -293,6 +294,7 @@ export const products: Product[] = [
     title: "Period Panty",
     description: "Leak-proof period panty with multi-layer absorption technology.",
     catID: 9,
+    image: "/products/13.png",
     material: "Cotton, Absorbent Layer",
   },
   {
