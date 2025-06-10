@@ -1,5 +1,4 @@
 "use client";
-import { products, categories, madeFor } from "@/data/data";
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import Fuse from "fuse.js";
 import { ChevronDown, ChevronUp, Filter, Loader2 } from "lucide-react";
@@ -14,8 +13,15 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import { getCategories, getProducts, getStrapiMedia } from "@/lib/strapi";
 
-export default function ProductsClient() {
+// Define madeFor enum to match your data structure
+enum madeFor {
+  MOTHER = "mother",
+  BABY = "baby",
+}
+
+export default function ProductsClientStrapi() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
@@ -23,10 +29,32 @@ export default function ProductsClient() {
   const [selectedMadeFor, setSelectedMadeFor] = useState<madeFor | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [products, setProducts] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
 
   const madeForValues = Object.values(madeFor);
+  
+  // Fetch data from Strapi
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const categoriesData = await getCategories();
+        const productsData = await getProducts();
 
-  console.log("Products:", products);
+        console.log(productsData);
+        
+        setCategories(categoriesData || []);
+        setProducts(productsData || []);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, []);
   
   // Set initial madeFor filter from URL params
   useEffect(() => {
@@ -37,13 +65,6 @@ export default function ProductsClient() {
     ) {
       setSelectedMadeFor(madeForParam as madeFor);
     }
-    
-    // Simulate loading state for better UX
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-    
-    return () => clearTimeout(timer);
   }, [searchParams]);
 
   const handleMadeForChange = useCallback((value: madeFor | null) => {
@@ -65,13 +86,13 @@ export default function ProductsClient() {
         shouldSort: true,
         distance: 100,
       }),
-    []
+    [products]
   );
 
   const filteredProducts = useMemo(() => {
+    if (isLoading) return [];
+    
     let results = products;
-
-    console.log("results :", results);
 
     // Apply fuzzy search if query exists
     if (searchQuery.trim()) {
@@ -81,20 +102,20 @@ export default function ProductsClient() {
 
     // Apply filters
     return results.filter((product) => {
-      const category = categories.find((cat) => cat.catID === product.catID);
+      // Get the category directly from the product
+      const category = product.category;
 
       const matchesCategory = selectedCategory
-        ? categories.find((cat) => cat.name === selectedCategory)?.catID ===
-          product.catID
+        ? category?.name === selectedCategory
         : true;
 
       const matchesMadeFor = selectedMadeFor
-        ? category?.madeFor === selectedMadeFor
+        ? category?.madeFor?.toLowerCase() === selectedMadeFor
         : true;
 
       return matchesCategory && matchesMadeFor;
     });
-  }, [searchQuery, selectedCategory, selectedMadeFor, fuse]);
+  }, [searchQuery, selectedCategory, selectedMadeFor, fuse, products, isLoading]);
 
   return (
     <main className="flex min-h-screen w-full justify-center items-start gap-4 mt-24 pb-16">
@@ -248,34 +269,30 @@ export default function ProductsClient() {
                     transition={{ duration: 0.3 }}
                     whileHover={{ y: -5 }}
                   >
-                    <Link href={`/product/${product.id}`}>
+                    <Link href={`/product/${product.documentId}`}>
                       <Card className="w-full h-full">
                         <div className="relative aspect-square w-full">
-                          {product.image ? (
+                          {product.image && product.image.length > 0 ? 
+                          <Image 
+                            src= {getStrapiMedia(product.image[0].url)} 
+                            alt={product.title || 'Product image'}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                            className="object-cover rounded-t-lg"
+                          />
+                          : 
                             <Image 
-                              src={product.image} 
-                              alt={product.title || 'Product image'}
-                              fill
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                              className="object-cover rounded-t-lg"
-                            />
-                          ) : (
-                            <Image 
-                              src={
-                                categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER 
-                                  ? '/images/mother.png' 
-                                  : '/images/baby.png'
-                              }
+                              src={product.category?.madeFor === 'MOTHER' ? '/images/mother.png' : '/images/baby.png'}
                               alt={product.title || 'Product image'}
                               fill
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                               className={`object-cover rounded-t-lg ${
-                                categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER 
+                                product.category?.madeFor === 'MOTHER' 
                                   ? 'object-left'
                                   : 'object-right'
                               }`}
-                            />
-                          )}
+                              />
+                          }                          
                         </div>
                         <CardHeader>
                           <CardTitle className="text-base line-clamp-2">{product.title}</CardTitle>
@@ -287,7 +304,7 @@ export default function ProductsClient() {
               </div>
 
               {/* No Results Message */}
-              {filteredProducts.length === 0 && (
+              {filteredProducts.length === 0 && !isLoading && (
                 <motion.div 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}

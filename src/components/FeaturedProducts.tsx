@@ -1,88 +1,96 @@
-'use client';
-
-import { useState, useEffect, useCallback } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Card, CardHeader, CardImage, CardTitle } from './ui/card';
-import { products, Product } from '@/data/data';
-import { motion } from 'framer-motion';
+"use client";
+import { useState, useEffect } from "react";
+import { Card, CardHeader, CardImage, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { products as allProducts, categories, madeFor } from "@/data/data";
 
 export default function FeaturedProducts() {
-  const [randomProducts, setRandomProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  
-  // Memoize the product selection to avoid unnecessary re-renders
-  const selectRandomProducts = useCallback(() => {
-    setIsLoading(true);
-    // Fisher-Yates shuffle algorithm for better randomization
-    const shuffled = [...products];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    setRandomProducts(shuffled.slice(0, 5));
-    setIsLoading(false);
-  }, []);
-  
+  const [products, setProducts] = useState(allProducts.slice(0, 4));
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
-    selectRandomProducts();
-  }, [selectRandomProducts]);
+    // Simulate loading for a smoother UI experience
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <section className="w-full mt-16">
-      <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-8rem)] mx-auto">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">Featured Products</h2>
-          <button 
-            onClick={selectRandomProducts}
-            className="text-sm text-primary hover:text-primary/80 transition-colors"
-            aria-label="Refresh featured products"
-          >
-            Refresh
-          </button>
+    <section className="py-16 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold mb-4">Featured Products</h2>
+          <p className="text-muted-foreground max-w-2xl">
+            Explore our collection of high-quality, sustainable products designed for both mothers and babies.
+          </p>
         </div>
-        
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {isLoading ? (
-            // Loading skeleton
-            Array(5).fill(0).map((_, index) => (
-              <div key={index} className="w-full h-[280px] bg-gray-100 rounded-lg animate-pulse"></div>
-            ))
-          ) : (
-            randomProducts.map((product) => (
+
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="animate-pulse">
+                <div className="bg-gray-200 h-64 rounded-lg mb-3"></div>
+                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {products.map((product, index) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.1 * parseInt(product.id) % 5 }}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="h-full"
               >
-                <Link href={`/product/${product.id}`}>
-                  <Card className="w-full h-full overflow-hidden">
-                    <div className="relative">
-                      <CardImage className="w-full h-[200px]" />
-                      {product.image && (
-                        <div className="absolute inset-0">
+                  <Link href={`/product/${product.id}`}>
+                      <Card className="w-full h-full">
+                        <div className="relative aspect-square w-full">
+                          {product.image ? 
                           <Image 
-                            src={product.image || '/placeholder.jpg'} 
-                            alt={product.title}
+                            src={product.image} 
+                            alt={product.title || 'Product image'}
                             fill
-                            sizes="(max-width: 768px) 100vw, 250px"
-                            className="object-cover"
-                            priority={parseInt(product.id) <= 2}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                            className="object-cover rounded-t-lg"
                           />
+                          : 
+                          <Image 
+                            src={categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER ? '/images/mother.png' : '/images/baby.png'}
+                            alt={product.title || 'Product image'}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                            className={`object-cover rounded-t-lg ${
+                              categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER 
+                                ? 'object-left'
+                                : 'object-right'
+                            }`}
+                          />
+                          }                          
                         </div>
-                      )}
-                    </div>
-                    <CardHeader>
-                      <CardTitle className="text-base line-clamp-2">{product.title}</CardTitle>
-                    </CardHeader>
-                  </Card>
-                </Link>
+                        <CardHeader>
+                          <CardTitle className="text-base line-clamp-2">{product.title}</CardTitle>
+                        </CardHeader>
+                      </Card>
+                    </Link>
               </motion.div>
-            ))
-          )}
+            ))}
+          </div>
+        )}
+
+        <div className="text-center mt-10">
+          <Link
+            href="/products"
+            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition"
+          >
+            View All Products
+          </Link>
         </div>
       </div>
     </section>

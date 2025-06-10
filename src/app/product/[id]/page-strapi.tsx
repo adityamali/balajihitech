@@ -1,54 +1,66 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import ProductDetails from "./ProductDetails";
-import { products, categories } from "@/data/data";
+import ProductDetails from "@/app/product/[id]/ProductDetails";
+import { getProduct, getCategories, getStrapiMedia } from "@/lib/strapi";
 
 type Props = {
   params: { id: string };
 };
 
 // Generate metadata for SEO
-// export function generateMetadata({ params }: Props): Metadata {
-//   const product = products.find(p => p.id === params.id);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const product = await getProduct(params.id);
   
-//   if (!product) {
-//     return {
-//       title: "Product Not Found",
-//       description: "The requested product could not be found."
-//     };
-//   }
+  if (!product) {
+    return {
+      title: "Product Not Found",
+      description: "The requested product could not be found."
+    };
+  }
   
-//   const category = categories.find(c => c.catID === product.catID);
+  const category = product.category?.data ? 
+    { id: product.category.data.id, ...product.category.data.attributes } : 
+    null;
   
-//   return {
-//     title: product.title,
-//     description: product.description,
-//     openGraph: {
-//       title: product.title,
-//       description: product.description,
-//       images: [
-//         {
-//           url: product.image ? new URL(product.image, 'http://localhost:3000').toString() : 'http://localhost:3000/products/placeholder.jpg',
-//           width: 1200,
-//           height: 630,
-//           alt: product.title,
-//         },
-//       ],
-//       type: "product",
-//     },
-//     keywords: [product.title, category?.name, "sustainable products", "eco-friendly"],
-//   };
-// }
+  const imageUrl = product.image?.data ? 
+    getStrapiMedia(product.image.data.attributes.url) : 
+    "/products/placeholder.jpg";
+  
+  return {
+    title: product.title,
+    description: product.description,
+    openGraph: {
+      title: product.title,
+      description: product.description,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: product.title,
+        },
+      ],
+      type: "product",
+    },
+    keywords: [product.title, category?.name, "sustainable products", "eco-friendly"],
+  };
+}
 
-export default function ProductPage({ params }: Props) {
-  const product = products.find(p => p.id === params.id);
+export default async function ProductPage({ params }: Props) {
+  const product = await getProduct(params.id);
   
   if (!product) {
     notFound();
   }
   
-  const category = categories.find(c => c.catID === product.catID);
+  const category = product.category?.data ? 
+    { id: product.category.data.id, ...product.category.data.attributes } : 
+    null;
+  
+  const imageUrl = product.image?.data ? 
+    getStrapiMedia(product.image.data.attributes.url) : 
+    "/products/placeholder.jpg";
 
   return (
     <main className="flex flex-col items-center justify-center mt-24 pt-8 pb-16">
@@ -87,7 +99,7 @@ export default function ProductPage({ params }: Props) {
               "@type": "Product",
               name: product.title,
               description: product.description,
-              image: product.image ? new URL(product.image, 'http://localhost:3000').toString() : 'http://localhost:3000/products/placeholder.jpg',
+              image: imageUrl,
               category: category?.name,
               brand: {
                 "@type": "Brand",
@@ -101,10 +113,10 @@ export default function ProductPage({ params }: Props) {
           {/* Product Image with SEO attributes */}
           <div className="relative aspect-square rounded-xl overflow-hidden shadow-md image-hover">
             <Image
-              src={product.image || '/images/baby.png'}
+              src={imageUrl}
               alt={`${product.title} - ${product.description}`}
               fill
-              className="object-cover object-right-bottom"
+              className="object-cover"
               priority
               sizes="(max-width: 768px) 100vw, 50vw"
             />

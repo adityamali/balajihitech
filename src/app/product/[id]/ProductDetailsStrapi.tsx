@@ -4,14 +4,13 @@ import { useState } from "react";
 import Image from "next/image";
 import { Phone, Check, Info } from "lucide-react";
 import Link from "next/link";
-import { Product, Category } from "@/data/data";
 
 type ProductDetailsProps = {
-  product: Product;
-  category?: Category | null;
+  product: any;
+  category?: any | null;
 };
 
-export default function ProductDetails({ product, category }: ProductDetailsProps) {
+export default function ProductDetailsStrapi({ product, category }: ProductDetailsProps) {
   const [showTooltip, setShowTooltip] = useState(false);
   
   const fadeIn = {
@@ -124,6 +123,13 @@ export default function ProductDetails({ product, category }: ProductDetailsProp
               )}
             </h3>
             <p className="text-muted-foreground">{product.material}</p>
+          </div>
+        )}
+        
+        {product.careInstructions && (
+          <div>
+            <h3 className="font-semibold">Care Instructions</h3>
+            <p className="text-muted-foreground">{product.careInstructions}</p>
           </div>
         )}
       </motion.div>

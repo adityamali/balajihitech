@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    domains: ["127.0.0.1", "localhost"],
   },
   experimental: {
     optimizeCss: false, // Disable CSS optimization temporarily
