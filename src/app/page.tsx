@@ -18,10 +18,10 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent"></div>
         </div>
-        <div className="container mx-auto text-center relative z-10 pt-24 md:pt-0">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">Gentle Products for Mom & Baby</h1>
-          <p className="text-lg md:text-xl text-gray-600 mb-8">Lovingly crafted, sustainable, and oh-so-soft.</p>
-          <Link href="/products" className="bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-primary/80 transition-colors">
+        <div className="container mx-6 w-[88vw] sm:mx-auto text-center relative z-10 pt-24 md:pt-0">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4 text-wrap">Gentle Products for <br /> Mom & Baby</h1>
+          <p className="text-lg md:text-xl text-gray-600 mb-8">Lovingly crafted, sustainable, <br /> and <span className="font-bold">oh-so-soft.</span></p>
+          <Link href="/products" className="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-primary/80 transition-colors">
             Explore Products
           </Link>
         </div>
