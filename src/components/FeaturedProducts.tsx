@@ -22,24 +22,24 @@ export default function FeaturedProducts() {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-4">Featured Products</h2>
-          <p className="text-muted-foreground max-w-2xl">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">Featured Products</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
             Explore our collection of high-quality, sustainable products designed for both mothers and babies.
           </p>
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="animate-pulse">
-                <div className="bg-gray-200 h-64 rounded-lg mb-3"></div>
-                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                <div className="bg-gray-200 h-64 rounded-lg mb-4"></div>
+                <div className="h-4 bg-gray-200 rounded w-3/4 mx-auto"></div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {products.map((product, index) => (
               <motion.div
                 key={product.id}
@@ -49,45 +49,45 @@ export default function FeaturedProducts() {
                 whileHover={{ y: -5 }}
                 className="h-full"
               >
-                  <Link href={`/product/${product.id}`}>
-                      <Card className="w-full h-full">
-                        <div className="relative aspect-square w-full">
-                          {product.image ? 
-                          <Image 
-                            src={product.image} 
-                            alt={product.title || 'Product image'}
-                            fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                            className="object-cover rounded-t-lg"
-                          />
-                          : 
-                          <Image 
-                            src={categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER ? '/images/mother.png' : '/images/baby.png'}
-                            alt={product.title || 'Product image'}
-                            fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                            className={`object-cover rounded-t-lg ${
-                              categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER 
-                                ? 'object-left'
-                                : 'object-right'
-                            }`}
-                          />
-                          }                          
-                        </div>
-                        <CardHeader>
-                          <CardTitle className="text-base line-clamp-2">{product.title}</CardTitle>
-                        </CardHeader>
-                      </Card>
-                    </Link>
+                <Link href={`/product/${product.id}`} className="block group">
+                  <Card className="w-full h-full overflow-hidden rounded-lg shadow-md group-hover:shadow-xl transition-shadow">
+                    <div className="relative aspect-square w-full">
+                      {product.image ? 
+                        <Image 
+                          src={product.image} 
+                          alt={product.title || 'Product image'}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        : 
+                        <Image 
+                          src={categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER ? '/images/mother.png' : '/images/baby.png'}
+                          alt={product.title || 'Product image'}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                          className={`object-cover group-hover:scale-105 transition-transform duration-300 ${
+                            categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER 
+                              ? 'object-left'
+                              : 'object-right'
+                          }`}
+                        />
+                      }                          
+                    </div>
+                    <CardHeader className="p-4">
+                      <CardTitle className="text-base text-center font-bold text-gray-800 line-clamp-2">{product.title}</CardTitle>
+                    </CardHeader>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </div>
         )}
 
-        <div className="text-center mt-10">
+        <div className="text-center mt-12">
           <Link
             href="/products"
-            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition"
+            className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-primary hover:bg-primary/80 transition-colors"
           >
             View All Products
           </Link>

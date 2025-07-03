@@ -6,110 +6,56 @@ import FeaturedProducts from "@/components/FeaturedProducts";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center mt-28 pb-16">
+    <main className="flex flex-col items-center justify-center pb-16">
       {/* Hero Carousel */}
-      <section className="group w-screen overflow-hidden">
-        <CustomCarousel>
-          {[
-            <div key="slide-1" className="min-w-full">
-              <div className="relative w-full h-[60vh] aspect-video overflow-hidden">
-                {/* Image Background */}  
-                <div className="absolute inset-0 z-0">
-                  <Image
-                    src="/banners/b2bg.png"
-                    alt="Eco-friendly textile innovation banner"
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: 'bottom right' }}
-                    priority
-                    sizes="100vw"
-                  />
-                </div>
-
-                {/* Overlay Text Content */}
-                <div className="relative z-10 h-full w-full p-8 md:p-16">
-                  <div className="w-full h-full flex flex-col justify-center gap-16">
-                    <h1 className="text-3xl md:text-5xl font-bold text-black lg:text-white text-center md:text-left px-4 sm:px-20 font-[helvetica] animate-fade-in">
-                      ECO FRIENDLY <br/> TEXTILE INNOVATION
-                    </h1>
-                    <h1 className="text-3xl md:text-5xl font-bold text-primary text-right px-4 sm:px-20 font-[helvetica] animate-fade-in hidden lg:block">
-                      SUSTAINABLE <br/> SOLUTIONS
-                    </h1>
-                    <Image 
-                      src="/icon.png" 
-                      height={100} 
-                      width={300} 
-                      alt="Balaji Hi-Tech Garments logo" 
-                      className="mx-4 sm:mx-20 hidden lg:block"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>,
-            <div key="slide-2" className="min-w-full">
-              <div className="relative w-full h-[60vh] aspect-video overflow-hidden">
-                {/* Image Background */}  
-                <div className="absolute inset-0 z-0">
-                  <Image
-                    src="/banners/banner1.png"
-                    alt="Sustainable solutions banner"
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: 'bottom right' }}
-                    priority
-                    sizes="100vw"
-                  />
-                </div>
-
-                {/* Overlay Text Content */}
-                {/* <div className="relative z-10 h-full w-full p-8 md:p-16">
-                  <div className="w-full h-full flex flex-col justify-end">
-                    <Image 
-                      src="/icon.png" 
-                      height={100} 
-                      width={300} 
-                      alt="Balaji Hi-Tech Garments logo"
-                    />
-                  </div>
-                </div> */}
-              </div>
-            </div>
-          ]}
-        </CustomCarousel>
+      <section className="w-full h-[70vh] md:h-64 bg-primary/20 py-20 md:py-64 relative">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/banners/bnr.webp"
+            alt="gentle products for mom and baby"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent"></div>
+        </div>
+        <div className="container mx-auto text-center relative z-10 pt-24 md:pt-0">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">Gentle Products for Mom & Baby</h1>
+          <p className="text-lg md:text-xl text-gray-600 mb-8">Lovingly crafted, sustainable, and oh-so-soft.</p>
+          <Link href="/products" className="bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-primary/80 transition-colors">
+            Explore Products
+          </Link>
+        </div>
       </section>
       {/* For Baby / For Mom */}
-      <section className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-8rem)] mt-12">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 sr-only">Product Categories</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <Link
-            href="/products?madeFor=mother"
-            className="relative rounded-lg p-6 py-24 text-center flex flex-col items-center justify-center gap-4 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:brightness-105 active:brightness-90 active:scale-95 image-hover"
-          >
-            <Image
-              src="/images/mother.png"
-              alt="Mother care products category"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-            <span className="text-amber-900 relative z-10 text-2xl font-bold bg-white/70 px-6 py-2 rounded-full backdrop-blur-sm">
-              For Mom
-            </span>
+      <section className="w-full container mx-auto mt-16 px-4">
+        <div className="grid grid-cols-2 gap-8">
+          <Link href="/products?madeFor=mother" className="group block">
+            <div className="relative rounded-lg overflow-hidden h-28 md:h-64">
+              <Image
+                src="/images/mother.png"
+                alt="Mother care products"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 hover:bg-black/30 flex items-center justify-center">
+                <h2 className="text-black/70 group-hover:text-white text-3xl font-bold">For Mom</h2>
+              </div>
+            </div>
           </Link>
-          <Link
-            href="/products?madeFor=baby"
-            className="relative rounded-lg p-6 py-24 text-center flex flex-col items-center justify-center gap-4 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:brightness-105 active:brightness-90 active:scale-95 image-hover"
-          >
-            <Image
-              src="/images/baby.png"
-              alt="Baby products category"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-            <span className="text-amber-900 relative z-10 text-2xl font-bold bg-white/70 px-6 py-2 rounded-full backdrop-blur-sm">
-              For Baby
-            </span>
+          <Link href="/products?madeFor=baby" className="group block">
+            <div className="relative rounded-lg overflow-hidden h-28 md:h-64">
+              <Image
+                src="/images/baby.png"
+                alt="Baby products"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <h2 className="text-black/70 group-hover:text-white text-3xl font-bold">For Baby</h2>
+              </div>
+            </div>
           </Link>
         </div>
       </section>

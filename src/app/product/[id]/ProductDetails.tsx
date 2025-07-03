@@ -49,7 +49,7 @@ export default function ProductDetails({ product, category }: ProductDetailsProp
       
       <motion.div variants={fadeIn} className="space-y-4">
         <h2 className="text-xl font-semibold">Product Details</h2>
-        <p className="text-muted-foreground leading-relaxed">{product.description}</p>
+        <p className="text-muted-foreground leading-relaxed" style={{ whiteSpace: 'pre-wrap' }}>{product.description}</p>
       </motion.div>
 
       {/* Features */}

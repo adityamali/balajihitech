@@ -97,218 +97,124 @@ export default function ProductsClient() {
   }, [searchQuery, selectedCategory, selectedMadeFor, fuse]);
 
   return (
-    <main className="flex min-h-screen w-full justify-center items-start gap-4 mt-24 pb-16">
-      <div className="w-[calc(100vw-2rem)] lg:w-[calc(100vw-8rem)] flex flex-col lg:flex-row">
-        <button
-          onClick={() => setIsFiltersOpen(!isFiltersOpen)}
-          className="flex items-center justify-between w-full p-4 bg-primary/5 rounded-lg lg:hidden mb-4 focus:outline-none focus:ring-2 focus:ring-primary/50"
-          aria-expanded={isFiltersOpen}
-          aria-controls="mobile-filters"
-        >
-          <span className="font-semibold flex items-center gap-2">
-            <Filter size={18} />
-            Filters
-          </span>
-          {isFiltersOpen ? (
-            <ChevronUp className="h-5 w-5" />
-          ) : (
-            <ChevronDown className="h-5 w-5" />
-          )}
-        </button>
+    <main className="container mx-auto px-4 mt-28 pb-16">
+      {/* <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold text-gray-800">Our Products</h1>
+        <p className="text-lg text-gray-600 mt-2">Sustainable and comfortable products for mother and baby.</p>
+      </div> */}
 
-        <div className="flex flex-col gap-6 w-full p-2 lg:p-6">
-          {/* Search */}
-          <div className="bg-white/80 backdrop-blur-sm z-10 py-4 sticky top-[100px]">
-            <ProductSearch
-              placeholder="Search products..."
-              onSearch={setSearchQuery}
-            />
-          </div>
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* Filters Sidebar */}
+        <aside className="lg:w-1/4">
+          <div className="sticky top-28">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-4">Filters</h3>
 
-          {/* Mobile Filters */}
-          <AnimatePresence>
-            {isFiltersOpen && (
-              <motion.div
-                id="mobile-filters"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="overflow-hidden lg:hidden"
-              >
-                <div className="bg-white/50 backdrop-blur-sm p-4 rounded-lg shadow-sm">
-                  <h3 className="text-lg font-semibold mb-4">Made For</h3>
-                  <div className="flex flex-wrap gap-2">
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => handleMadeForChange(null)}
-                      className={`px-4 py-2 rounded-full text-sm transition-colors
-                      ${
-                        selectedMadeFor === null
+              {/* Made For Filter */}
+              <div>
+                <h4 className="font-semibold mb-2">Made For</h4>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => handleMadeForChange(null)}
+                    className={`px-4 py-2 rounded-full text-sm transition-colors ${
+                      selectedMadeFor === null
+                        ? "bg-primary text-white"
+                        : "bg-gray-200 hover:bg-gray-300"
+                    }`}
+                  >
+                    All
+                  </button>
+                  {madeForValues.map((madeForValue) => (
+                    <button
+                      key={madeForValue}
+                      onClick={() => handleMadeForChange(madeForValue)}
+                      className={`px-4 py-2 rounded-full text-sm transition-colors capitalize ${
+                        selectedMadeFor === madeForValue
                           ? "bg-primary text-white"
-                          : "bg-primary/10 hover:bg-primary/20"
+                          : "bg-gray-200 hover:bg-gray-300"
                       }`}
-                      aria-pressed={selectedMadeFor === null}
                     >
-                      All
-                    </motion.button>
-                    {madeForValues.map((madeForValue) => (
-                      <motion.button
-                        key={madeForValue}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => handleMadeForChange(madeForValue)}
-                        className={`px-4 py-2 rounded-full text-sm transition-colors
-                        ${
-                          selectedMadeFor === madeForValue
-                            ? "bg-primary text-white"
-                            : "bg-primary/10 hover:bg-primary/20"
-                        }`}
-                        aria-pressed={selectedMadeFor === madeForValue}
-                      >
-                        {madeForValue}
-                      </motion.button>
-                    ))}
-                  </div>
+                      {madeForValue}
+                    </button>
+                  ))}
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Desktop Filters */}
-          <div className="hidden lg:block">
-            <h3 className="text-lg font-semibold mb-4">Made For</h3>
-            <div className="flex flex-wrap gap-2">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => handleMadeForChange(null)}
-                className={`px-4 py-2 rounded-full text-sm transition-colors
-                ${
-                  selectedMadeFor === null
-                    ? "bg-primary text-white"
-                    : "bg-primary/10 hover:bg-primary/20"
-                }`}
-                aria-pressed={selectedMadeFor === null}
-              >
-                All
-              </motion.button>
-              {madeForValues.map((madeForValue) => (
-                <motion.button
-                  key={madeForValue}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => handleMadeForChange(madeForValue)}
-                  className={`px-4 py-2 rounded-full text-sm transition-colors
-                  ${
-                    selectedMadeFor === madeForValue
-                      ? "bg-primary text-white"
-                      : "bg-primary/10 hover:bg-primary/20"
-                  }`}
-                  aria-pressed={selectedMadeFor === madeForValue}
-                >
-                  {madeForValue}
-                </motion.button>
-              ))}
+              </div>
             </div>
           </div>
+        </aside>
 
-          {/* Results Summary */}
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl font-semibold">
-              {selectedMadeFor 
-                ? `${selectedMadeFor.charAt(0).toUpperCase() + selectedMadeFor.slice(1)} Products` 
-                : "All Products"}
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              {filteredProducts.length} {filteredProducts.length === 1 ? "product" : "products"} found
+        {/* Products Grid */}
+        <div className="lg:w-3/4">
+          {/* Search and Sort */}
+          <div className="flex justify-between items-center mb-6">
+            <div className="w-full max-w-sm">
+              <ProductSearch
+                placeholder="Search products..."
+                onSearch={setSearchQuery}
+              />
+            </div>
+            <p className="text-sm text-gray-500">
+              {filteredProducts.length} {filteredProducts.length === 1 ? "product" : "products"}
             </p>
           </div>
 
-          {/* Loading State */}
           {isLoading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {Array(8).fill(0).map((_, index) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+              {Array(9).fill(0).map((_, index) => (
                 <div key={index} className="animate-pulse">
-                  <div className="bg-gray-200 rounded-lg h-[200px] w-full"></div>
-                  <div className="mt-2 h-4 bg-gray-200 rounded w-3/4"></div>
+                  <div className="bg-gray-200 rounded-lg h-64 w-full"></div>
+                  <div className="mt-3 h-4 bg-gray-200 rounded w-3/4"></div>
                 </div>
               ))}
             </div>
           ) : (
-            <>
-              {/* Product Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {filteredProducts.map((product) => (
-                  <motion.div
-                    key={product.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                    whileHover={{ y: -5 }}
-                  >
-                    <Link href={`/product/${product.id}`}>
-                      <Card className="w-full h-full">
-                        <div className="relative aspect-square w-full">
-                          {product.image ? (
+            <AnimatePresence>
+              {filteredProducts.length > 0 ? (
+                <motion.div
+                  layout
+                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+                >
+                  {filteredProducts.map((product) => (
+                    <motion.div
+                      key={product.id}
+                      layout
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.3 }}
+                      className="group"
+                    >
+                      <Link href={`/product/${product.id}`}>
+                        <Card className="w-full h-full overflow-hidden rounded-lg shadow-md group-hover:shadow-xl transition-shadow">
+                          <div className="relative aspect-square w-full">
                             <Image 
-                              src={product.image} 
+                              src={product.image || (categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER ? '/images/mother.png' : '/images/baby.png')}
                               alt={product.title || 'Product image'}
                               fill
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                              className="object-cover rounded-t-lg"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              className="object-cover group-hover:scale-105 transition-transform duration-300"
                             />
-                          ) : (
-                            <Image 
-                              src={
-                                categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER 
-                                  ? '/images/mother.png' 
-                                  : '/images/baby.png'
-                              }
-                              alt={product.title || 'Product image'}
-                              fill
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                              className={`object-cover rounded-t-lg ${
-                                categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER 
-                                  ? 'object-left'
-                                  : 'object-right'
-                              }`}
-                            />
-                          )}
-                        </div>
-                        <CardHeader>
-                          <CardTitle className="text-base line-clamp-2">{product.title}</CardTitle>
-                        </CardHeader>
-                      </Card>
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* No Results Message */}
-              {filteredProducts.length === 0 && (
+                          </div>
+                          <CardHeader className="p-4">
+                            <CardTitle className="text-base text-center font-bold text-gray-800 line-clamp-2">{product.title}</CardTitle>
+                          </CardHeader>
+                        </Card>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              ) : (
                 <motion.div 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="text-center py-12 text-muted-foreground"
+                  className="text-center py-16 text-gray-500"
                 >
-                  <div className="mb-4">
-                    <Filter size={48} className="mx-auto opacity-20" />
-                  </div>
-                  <p className="text-lg font-medium">No products found matching your criteria.</p>
+                  <Filter size={48} className="mx-auto opacity-30 mb-4" />
+                  <p className="text-lg font-medium">No products found.</p>
                   <p className="mt-2">Try adjusting your filters or search terms.</p>
-                  {searchQuery && (
-                    <button 
-                      onClick={() => setSearchQuery("")}
-                      className="mt-4 text-primary hover:underline"
-                    >
-                      Clear search
-                    </button>
-                  )}
                 </motion.div>
               )}
-            </>
+            </AnimatePresence>
           )}
         </div>
       </div>

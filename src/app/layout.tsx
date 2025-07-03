@@ -1,19 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inria_Serif } from "next/font/google";
 import "./globals.css";
 
 import { Navbar } from "@/components/ui";
 import Footer from "@/components/ui/Footer";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inriaSerif = Inria_Serif({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "700"],
 });
 
 export const viewport: Viewport = {
@@ -84,7 +79,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className={"antialiased bg-background"}>
+      <body className={`${inriaSerif.className} antialiased bg-background`}>
         <Navbar />
         {children}
         <Footer />

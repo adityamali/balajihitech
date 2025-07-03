@@ -52,13 +52,14 @@ const Navbar = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`w-full top-0 left-0 fixed bg-white/90 backdrop-blur-sm transition-all duration-300 z-50 ${
-        isScrolled ? "shadow-md" : ""
-      }`}
+      className={`w-full top-0 left-0 fixed bg-transparent transition-all duration-300 z-50 ${
+        isScrolled ? "bg-white/80 backdrop-blur-lg shadow-lg" : ""
+      } 
+      ${isMenuOpen ? "bg-white" : ""}`}
     >
       <div className="h-1 bg-primary w-full"></div>
       <div className="flex justify-between items-center px-4 sm:px-8 lg:px-16 py-4 md:py-6">
-        <div className="text-xl sm:text-2xl font-bold">
+        <div >
           <Link href="/" className="text-primary-900 block" aria-label="Balaji Hi-Tech Garments - Home">
             <Image 
               src="/icon.png" 
@@ -66,7 +67,7 @@ const Navbar = () => {
               width={270} 
               height={54} 
               priority 
-              className="w-auto h-auto"
+              className="w-auto h-auto max-w-[220px] sm:max-w-[180px] lg:max-w-none"
             />
           </Link>
         </div>
@@ -82,14 +83,14 @@ const Navbar = () => {
         </button>
 
         {/* Desktop Menu */}
-        <nav className="hidden lg:flex gap-8 text-lg">
+        <nav className={`hidden lg:flex gap-8 text-lg ${isScrolled ? "" : "bg-white/30 backdrop-blur-md rounded-full pl-6"}`}>
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={`${
                 link.isButton
-                  ? "bg-primary text-white hover:bg-primary/90 py-2 px-4 rounded transition-colors"
+                  ? "bg-primary text-black hover:bg-primary/90 py-2 px-4 rounded-full transition-colors"
                   : `p-2 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full ${
                       pathname === link.href ? "after:w-full" : ""
                     }`
