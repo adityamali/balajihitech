@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "Balaji Hi-Tech Garments",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/og.webp",
         width: 1200,
         height: 630,
       },
