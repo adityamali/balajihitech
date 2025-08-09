@@ -1,0 +1,34 @@
+@startuml
+!include <c4/C4_Context>
+!include <c4/C4_Container>
+!include <c4/C4_Component>
+
+System_Boundary(c1, "Balaji Hitech E-commerce Platform") {
+  Person(customer, "Customer", "Buys baby and maternity products")
+
+  Container(web_app, "Next.js Web App", "React.js", "Provides e-commerce functionality", "https://nextjs.org/")
+
+  ContainerDb(data_source, "Strapi CMS", "Headless CMS", "Stores product and category data")
+
+  Rel(customer, web_app, "Browses and purchases products", "HTTPS")
+  Rel(web_app, data_source, "Retrieves product and category data", "REST API")
+
+
+  Component(web_app, product_catalog_component, "Product Catalog", "Displays product listings and details")
+  Component(web_app, cart_component, "Shopping Cart", "Manages shopping cart items")
+  Component(web_app, checkout_component, "Checkout", "Processes orders")
+
+
+  Rel(product_catalog_component, data_source, "Gets product and category data", "REST API")
+  Rel(cart_component, data_source, "Gets product details", "REST API")
+  Rel(checkout_component, data_source, "Gets order details", "REST API")
+
+  Component(web_app, image_handling_component, "Image Handling", "Optimizes and serves images")
+  Rel(web_app, image_handling_component, "Provides optimized images", "Internal API Call")
+
+}
+
+System_Ext(nextjs, "Next.js Framework", "Provides server-side rendering and routing", "https://nextjs.org/")
+Rel(web_app, nextjs, "Built with", "")
+
+@enduml

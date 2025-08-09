@@ -107,7 +107,7 @@ export default function ProductsClient() {
         {/* Filters Sidebar */}
         <aside className="lg:w-1/4">
           <div className="sticky top-28">
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className="bg-black/10 p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold mb-4">Filters</h3>
 
               {/* Made For Filter */}

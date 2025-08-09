@@ -342,7 +342,7 @@ export const products: Product[] = [
 • Age group for adult.
 • Easy to use and wash.`,
     catID: 10,
-    image: "/products/nursingPad.webp",
+    image: "/products/nursingpad.webp",
     material: "Cotton, Bamboo Fiber",
   },
   {

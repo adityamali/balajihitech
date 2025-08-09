@@ -58,7 +58,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-lg shadow-md p-8 text-center group"
+              className="bg-black/10 rounded-lg shadow-md p-8 text-center group"
             >
               <div className="relative h-48 w-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary/20">
                 <Image
