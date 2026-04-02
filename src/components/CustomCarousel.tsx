@@ -30,7 +30,7 @@ export default function CustomCarousel({
   }, [autoSlide, autoSlideInterval]);
 
   return (
-    <div className="relative overflow-hidden rounded-lg">
+    <div className="relative overflow-hidden rounded-3xl shadow-soft">
       <div
         className="flex transition-transform duration-500 ease-out"
         style={{ transform: `translateX(-${curr * 100}%)` }}
@@ -40,7 +40,8 @@ export default function CustomCarousel({
       <div className="absolute inset-0 flex items-center justify-between p-4">
         <button
           onClick={prev}
-          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
+          className="w-12 h-12 flex items-center justify-center rounded-full shadow-soft bg-white/90 text-gray-800 hover:bg-white transition-all hover:scale-110 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary backdrop-blur-sm"
+          aria-label="Previous slide"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -48,7 +49,8 @@ export default function CustomCarousel({
         </button>
         <button
           onClick={next}
-          className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
+          className="w-12 h-12 flex items-center justify-center rounded-full shadow-soft bg-white/90 text-gray-800 hover:bg-white transition-all hover:scale-110 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary backdrop-blur-sm"
+          aria-label="Next slide"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -61,7 +63,7 @@ export default function CustomCarousel({
             <div
               key={i}
               className={`
-                transition-all w-2 h-2 bg-white rounded-full
+                transition-all w-3 h-3 bg-white rounded-full shadow-sm
                 ${curr === i ? "p-1.5" : "bg-opacity-50"}
               `}
             />

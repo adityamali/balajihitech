@@ -20,45 +20,49 @@ export default function FeaturedProducts() {
   }, []);
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Featured Products</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Explore our collection of high-quality, sustainable products designed for both mothers and babies.
+    <section className="py-24 bg-[#faf8f5]">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="text-center mb-16">
+          <span className="text-sm font-bold text-primary-900 mb-4 tracking-widest uppercase block">Our Highlights</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-sans tracking-tight">Featured Products</h2>
+          <p className="text-gray-600 max-w-xl mx-auto font-sans text-lg">
+            Curated essentials designed with sustainable fabrics for unparalleled comfort.
           </p>
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-12">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="animate-pulse">
-                <div className="bg-gray-200 h-64 rounded-lg mb-4"></div>
-                <div className="h-4 bg-gray-200 rounded w-3/4 mx-auto"></div>
+              <div key={i} className="animate-pulse bg-white p-4 rounded-3xl">
+                <div className="bg-gray-100 h-64 rounded-2xl mb-6"></div>
+                <div className="h-4 bg-gray-100 rounded-full w-3/4 mx-auto"></div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-10">
             {products.map((product, index) => (
               <motion.div
                 key={product.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
                 className="h-full"
               >
-                <Link href={`/product/${product.id}`} className="block group">
-                  <Card className="w-full h-full overflow-hidden rounded-lg shadow-md group-hover:shadow-xl transition-shadow">
-                    <div className="relative aspect-square w-full">
+                <Link 
+                  href={`/product/${product.id}`} 
+                  className="block group h-full focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary rounded-[2.5rem]"
+                >
+                  <Card className="w-full h-full overflow-hidden rounded-[2.5rem] border-4 border-white shadow-soft group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 bg-white/40 backdrop-blur-md group-hover:-translate-y-2 relative pb-4">
+                    <div className="relative aspect-[4/5] w-full rounded-t-[2.2rem] rounded-b-xl overflow-hidden m-2 max-w-[calc(100%-16px)]">
                       {product.image ? 
                         <Image 
                           src={product.image} 
                           alt={product.title || 'Product image'}
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                         />
                         : 
                         <Image 
@@ -66,16 +70,21 @@ export default function FeaturedProducts() {
                           alt={product.title || 'Product image'}
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                          className={`object-cover group-hover:scale-105 transition-transform duration-300 ${
+                          className={`object-cover group-hover:scale-105 transition-transform duration-700 ease-out ${
                             categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER 
                               ? 'object-left'
                               : 'object-right'
                           }`}
                         />
-                      }                          
+                      }
+                      {/* Hover Overlay Button */}
+                      <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/95 text-gray-900 rounded-full w-16 h-16 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 shadow-xl z-20">
+                        <span className="font-bold text-sm tracking-tight">&rarr;</span>
+                      </div>
                     </div>
-                    <CardHeader className="p-4">
-                      <CardTitle className="text-base text-center font-bold text-gray-800 line-clamp-2">{product.title}</CardTitle>
+                    <CardHeader className="pt-6 pb-4 px-6 flex justify-center items-center text-center">
+                      <CardTitle className="text-xl font-bold text-gray-900 line-clamp-2 font-sans group-hover:text-primary-900 transition-colors leading-snug">{product.title}</CardTitle>
                     </CardHeader>
                   </Card>
                 </Link>
@@ -84,12 +93,13 @@ export default function FeaturedProducts() {
           </div>
         )}
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-20">
           <Link
             href="/products"
-            className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-primary hover:bg-primary/80 transition-colors"
+            className="inline-flex items-center justify-center px-12 py-4 border-2 border-primary text-lg font-bold rounded-full text-gray-900 bg-white hover:bg-primary/10 transition-all shadow-sm hover:shadow-md active:scale-95 group"
           >
-            View All Products
+            <span>View All Products</span>
+            <span className="ml-3 group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </div>
       </div>

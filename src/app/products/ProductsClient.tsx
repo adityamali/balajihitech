@@ -97,51 +97,56 @@ export default function ProductsClient() {
   }, [searchQuery, selectedCategory, selectedMadeFor, fuse]);
 
   return (
-    <main className="container mx-auto px-4 mt-28 pb-16">
-      {/* <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-800">Our Products</h1>
-        <p className="text-lg text-gray-600 mt-2">Sustainable and comfortable products for mother and baby.</p>
-      </div> */}
+    <div className="min-h-screen bg-[#faf8f5] pt-32 pb-24 relative overflow-hidden">
+      {/* Decorative background blurs */}
+      <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-secondary/30 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/4"></div>
+      <div className="absolute bottom-0 left-0 w-[40vw] h-[40vw] bg-primary/20 rounded-full blur-[80px] pointer-events-none translate-y-1/4 -translate-x-1/4"></div>
 
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Filters Sidebar */}
-        <aside className="lg:w-1/4">
-          <div className="sticky top-28">
-            <div className="bg-black/10 p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-4">Filters</h3>
+      <main className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl md:text-6xl font-bold font-sans text-gray-900 tracking-tight mb-4">Our Collection</h1>
+          <p className="text-lg text-gray-600 font-sans max-w-2xl mx-auto">Discover consciously crafted essentials designed with pure gentleness for mom and baby.</p>
+        </div>
 
-              {/* Made For Filter */}
-              <div>
-                <h4 className="font-semibold mb-2">Made For</h4>
-                <div className="flex flex-wrap gap-2">
-                  <button
-                    onClick={() => handleMadeForChange(null)}
-                    className={`px-4 py-2 rounded-full text-sm transition-colors ${
-                      selectedMadeFor === null
-                        ? "bg-primary text-white"
-                        : "bg-gray-200 hover:bg-gray-300"
-                    }`}
-                  >
-                    All
-                  </button>
-                  {madeForValues.map((madeForValue) => (
+        <div className="flex flex-col lg:flex-row gap-10">
+          {/* Filters Sidebar */}
+          <aside className="lg:w-1/4">
+            <div className="sticky top-32">
+              <div className="bg-white/60 backdrop-blur-md rounded-[2.5rem] p-8 shadow-soft border-4 border-white">
+                <h3 className="text-2xl font-bold mb-6 font-sans text-gray-900">Filters</h3>
+
+                {/* Made For Filter */}
+                <div>
+                  <h4 className="font-semibold text-gray-700 mb-4 font-sans tracking-wide uppercase text-sm">Made For</h4>
+                  <div className="flex flex-wrap gap-3">
                     <button
-                      key={madeForValue}
-                      onClick={() => handleMadeForChange(madeForValue)}
-                      className={`px-4 py-2 rounded-full text-sm transition-colors capitalize ${
-                        selectedMadeFor === madeForValue
-                          ? "bg-primary text-white"
-                          : "bg-gray-200 hover:bg-gray-300"
+                      onClick={() => handleMadeForChange(null)}
+                      className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                        selectedMadeFor === null
+                          ? "bg-gray-900 text-white shadow-md hover:-translate-y-0.5"
+                          : "bg-white text-gray-600 shadow-sm hover:shadow border border-gray-100 hover:-translate-y-0.5 hover:text-gray-900"
                       }`}
                     >
-                      {madeForValue}
+                      All
                     </button>
-                  ))}
+                    {madeForValues.map((madeForValue) => (
+                      <button
+                        key={madeForValue}
+                        onClick={() => handleMadeForChange(madeForValue)}
+                        className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all capitalize outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                          selectedMadeFor === madeForValue
+                            ? "bg-gray-900 text-white shadow-md hover:-translate-y-0.5"
+                            : "bg-white text-gray-600 shadow-sm hover:shadow border border-gray-100 hover:-translate-y-0.5 hover:text-gray-900"
+                        }`}
+                      >
+                        {madeForValue}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </aside>
+          </aside>
 
         {/* Products Grid */}
         <div className="lg:w-3/4">
@@ -159,11 +164,12 @@ export default function ProductsClient() {
           </div>
 
           {isLoading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-              {Array(9).fill(0).map((_, index) => (
-                <div key={index} className="animate-pulse">
-                  <div className="bg-gray-200 rounded-lg h-64 w-full"></div>
-                  <div className="mt-3 h-4 bg-gray-200 rounded w-3/4"></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+              {Array(6).fill(0).map((_, index) => (
+                <div key={index} className="animate-pulse bg-white/40 rounded-[2.5rem] p-3 border-4 border-white shadow-soft">
+                  <div className="bg-white/50 h-[300px] rounded-[2rem] mb-6"></div>
+                  <div className="h-4 bg-white/60 rounded-full w-2/3 mx-auto mb-3"></div>
+                  <div className="h-3 bg-white/50 rounded-full w-1/2 mx-auto"></div>
                 </div>
               ))}
             </div>
@@ -172,31 +178,36 @@ export default function ProductsClient() {
               {filteredProducts.length > 0 ? (
                 <motion.div
                   layout
-                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+                  className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8"
                 >
                   {filteredProducts.map((product) => (
                     <motion.div
                       key={product.id}
                       layout
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      transition={{ duration: 0.3 }}
-                      className="group"
+                      initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                      transition={{ duration: 0.4 }}
+                      className="h-full"
                     >
-                      <Link href={`/product/${product.id}`}>
-                        <Card className="w-full h-full overflow-hidden rounded-lg shadow-md group-hover:shadow-xl transition-shadow">
-                          <div className="relative aspect-square w-full">
+                      <Link href={`/product/${product.id}`} className="block h-full group focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary rounded-[2.5rem]">
+                        <Card className="w-full h-full overflow-hidden rounded-[2.5rem] border-4 border-white shadow-soft group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 bg-white/40 backdrop-blur-md group-hover:-translate-y-2 relative pb-4">
+                          <div className="relative aspect-[4/5] w-full rounded-[2.2rem] overflow-hidden m-2 max-w-[calc(100%-16px)]">
                             <Image 
                               src={product.image || (categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER ? '/images/mother.png' : '/images/baby.png')}
                               alt={product.title || 'Product image'}
                               fill
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              className="object-cover group-hover:scale-105 transition-transform duration-300"
+                              className={`object-cover group-hover:scale-105 transition-transform duration-700 ease-out ${!product.image && categories.find(cat => cat.catID === product.catID)?.madeFor === madeFor.MOTHER ? 'object-left' : 'object-right'}`}
                             />
+                            {/* Hover Overlay Button */}
+                            <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/95 text-gray-900 rounded-full w-16 h-16 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 shadow-xl z-20">
+                              <span className="font-bold text-sm tracking-tight">&rarr;</span>
+                            </div>
                           </div>
-                          <CardHeader className="p-4">
-                            <CardTitle className="text-base text-center font-bold text-gray-800 line-clamp-2">{product.title}</CardTitle>
+                          <CardHeader className="pt-6 pb-4 px-6 flex justify-center items-center text-center">
+                            <CardTitle className="text-xl font-bold text-gray-900 line-clamp-2 font-sans group-hover:text-primary-900 transition-colors leading-snug">{product.title}</CardTitle>
                           </CardHeader>
                         </Card>
                       </Link>
@@ -217,7 +228,8 @@ export default function ProductsClient() {
             </AnimatePresence>
           )}
         </div>
-      </div>
-    </main>
+        </div>
+      </main>
+    </div>
   );  
 }

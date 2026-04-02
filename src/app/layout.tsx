@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Inria_Serif } from "next/font/google";
+import { Inria_Serif, Nunito } from "next/font/google";
 import "./globals.css";
 
 import { Navbar } from "@/components/ui";
@@ -10,6 +10,11 @@ import ScrollToTop from "@/components/ui/ScrollToTop";
 const inriaSerif = Inria_Serif({
   subsets: ["latin"],
   weight: ["300", "400", "700"],
+});
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
 });
 
 export const viewport: Viewport = {
@@ -80,19 +85,51 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
-        `}
-      </Script>
-      <body className={`${inriaSerif.className} antialiased bg-background`}>
+        <Script
+          id="schema-organization"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+             __html: JSON.stringify({
+               "@context": "https://schema.org",
+               "@type": "Organization",
+               name: "Balaji Hi-Tech Garments",
+               url: "https://balajihitech.com",
+               logo: "https://balajihitech.com/images/og.webp",
+               description: "Premium garment manufacturing for babies and mothers. Specializing in reusable cloth diapers, period panties, and sustainable care products.",
+               address: {
+                 "@type": "PostalAddress",
+                 streetAddress: "G.NO. -486, Bhatale Mala, Datt Nagar",
+                 addressLocality: "Ichalkaranji",
+                 postalCode: "416115",
+                 addressCountry: "IN"
+               },
+               contactPoint: {
+                 "@type": "ContactPoint",
+                 telephone: "+91-9881372830",
+                 contactType: "customer service",
+                 email: "balajihitechg@gmail.com"
+               },
+               sameAs: [
+                 "https://facebook.com",
+                 "https://instagram.com"
+               ]
+             })
+          }}
+        />
+        <Script
+          id="google-analytics"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+      <body className={`${nunito.className} antialiased bg-background text-gray-800`}>
         <Navbar />
         {children}
         <Footer />

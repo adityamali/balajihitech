@@ -1,11 +1,12 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import ProductDetails from "./ProductDetails";
 import { products, categories } from "@/data/data";
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 // Generate metadata for SEO
@@ -41,8 +42,9 @@ type Props = {
 //   };
 // }
 
-export default function ProductPage({ params }: Props) {
-  const product = products.find(p => p.id === params.id);
+export default async function ProductPage({ params }: Props) {
+  const { id } = await params;
+  const product = products.find(p => p.id === id);
   
   if (!product) {
     notFound();
@@ -79,21 +81,62 @@ export default function ProductPage({ params }: Props) {
         </nav>
 
         {/* Schema.org structured data for rich results */}
-        <script
+        <Script
+          id="product-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Product",
-              name: product.title,
-              description: product.description,
-              image: product.image ? new URL(product.image, 'http://localhost:3000').toString() : 'http://localhost:3000/products/placeholder.jpg',
-              category: category?.name,
-              brand: {
-                "@type": "Brand",
-                name: "Balaji Hi-Tech Garments",
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://balajihitech.com/"
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Products",
+                    item: "https://balajihitech.com/products"
+                  },
+                  category ? {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: category.name,
+                    item: `https://balajihitech.com/products?madeFor=${category.madeFor.toLowerCase()}`
+                  } : null,
+                  {
+                    "@type": "ListItem",
+                    position: category ? 4 : 3,
+                    name: product.title,
+                    item: `https://balajihitech.com/product/${product.id}`
+                  }
+                ].filter(Boolean)
               },
-            }),
+              {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                name: product.title,
+                description: product.description,
+                image: product.image ? `https://balajihitech.com${product.image}` : `https://balajihitech.com/products/placeholder.jpg`,
+                category: category?.name,
+                brand: {
+                  "@type": "Brand",
+                  name: "Balaji Hi-Tech Garments",
+                },
+                offers: {
+                  "@type": "Offer",
+                  url: `https://balajihitech.com/product/${product.id}`,
+                  priceCurrency: "INR",
+                  price: "499.00",
+                  availability: "https://schema.org/InStock",
+                  itemCondition: "https://schema.org/NewCondition"
+                }
+              }
+            ])
           }}
         />
 

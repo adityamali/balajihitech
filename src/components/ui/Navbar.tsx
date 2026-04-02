@@ -50,15 +50,14 @@ const Navbar = () => {
 
   return (
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`w-full top-0 left-0 fixed bg-transparent transition-all duration-300 z-50 ${
-        isScrolled ? "bg-white/80 backdrop-blur-lg shadow-lg" : ""
+      initial={{ y: -100, x: "-50%" }}
+      animate={{ y: 0, x: "-50%" }}
+      className={`fixed top-4 left-1/2 w-[92%] max-w-7xl rounded-full transition-all duration-300 z-50 border border-white/20 ${
+        isScrolled ? "bg-white/80 backdrop-blur-xl shadow-soft py-2" : "bg-white/40 backdrop-blur-md shadow-sm py-3"
       } 
-      ${isMenuOpen ? "bg-white" : ""}`}
+      ${isMenuOpen ? "bg-white !rounded-2xl" : ""}`}
     >
-      <div className="h-1 bg-primary w-full"></div>
-      <div className="flex justify-between items-center px-4 sm:px-8 lg:px-16 py-4 md:py-6">
+      <div className="flex justify-between items-center px-6 md:px-10">
         <div >
           <Link href="/" className="text-primary-900 block" aria-label="Balaji Hi-Tech Garments - Home">
             <Image 
@@ -67,7 +66,7 @@ const Navbar = () => {
               width={270} 
               height={54} 
               priority 
-              className="w-auto h-auto max-w-[220px] sm:max-w-[180px] lg:max-w-none"
+              className="w-auto h-auto max-w-[160px] sm:max-w-[140px] lg:max-w-[160px]"
             />
           </Link>
         </div>
@@ -83,16 +82,16 @@ const Navbar = () => {
         </button>
 
         {/* Desktop Menu */}
-        <nav className={`hidden lg:flex gap-8 text-lg ${isScrolled ? "" : "bg-white/30 backdrop-blur-md rounded-full pl-6"}`}>
+        <nav className="hidden lg:flex gap-6 xl:gap-10 text-[1.05rem] font-sans items-center">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={`${
                 link.isButton
-                  ? "bg-primary text-black hover:bg-primary/90 py-2 px-4 rounded-full transition-colors"
-                  : `p-2 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full ${
-                      pathname === link.href ? "after:w-full" : ""
+                  ? "bg-secondary text-gray-900 hover:bg-secondary/70 hover:shadow-md py-2.5 px-6 rounded-full font-bold transition-all hover:-translate-y-0.5 active:scale-95"
+                  : `py-1.5 px-3 rounded-full relative transition-all text-gray-700 hover:text-gray-900 hover:bg-white/50 ${
+                      pathname === link.href ? "bg-white shadow-sm font-semibold text-gray-900" : ""
                     }`
               }`}
               aria-current={pathname === link.href ? "page" : undefined}
@@ -110,7 +109,7 @@ const Navbar = () => {
               animate={{ opacity: 1, height: "100vh" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed top-[73px] left-0 right-0 bg-white/98 backdrop-blur-md lg:hidden py-4 shadow-lg z-50 overflow-auto bg-white"
+              className="absolute top-[80px] left-0 right-0 bg-white/95 backdrop-blur-xl lg:hidden py-6 shadow-soft rounded-2xl z-50 overflow-hidden mx-4 border border-gray-100"
             >
               <nav className="flex flex-col items-center gap-6 pt-8">
                 {navLinks.map((link) => (
@@ -122,12 +121,12 @@ const Navbar = () => {
                   >
                     <Link
                       href={link.href}
-                      className={`p-3 text-lg ${
+                      className={`block w-full text-center p-3 text-xl font-sans rounded-xl transition-colors ${
                         link.isButton
-                          ? "bg-primary text-white py-2 px-6 rounded-full"
+                          ? "bg-secondary text-gray-900 py-4 font-bold max-w-xs mx-auto shadow-sm"
                           : pathname === link.href
-                          ? "font-medium text-primary"
-                          : ""
+                          ? "bg-primary/10 font-bold text-gray-900"
+                          : "text-gray-600 hover:bg-gray-50"
                       }`}
                       onClick={() => setIsMenuOpen(false)}
                       aria-current={pathname === link.href ? "page" : undefined}

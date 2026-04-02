@@ -62,9 +62,12 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["Inria Serif"],
-        serif: ["Inria Serif"],
+        sans: ["Nunito", "sans-serif"],
+        serif: ["Inria Serif", "serif"],
       },
+      boxShadow: {
+        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

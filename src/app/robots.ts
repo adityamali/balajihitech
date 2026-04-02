@@ -1,12 +1,14 @@
-import { MetadataRoute } from 'next'
- 
+import { MetadataRoute } from 'next';
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://balajihitech.com';
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/admin/'],
+      disallow: ['/private/'],
     },
-    sitemap: 'https://balajihitech.com/sitemap.xml',
-  }
+    sitemap: `${BASE_URL}/sitemap.xml`,
+  };
 }
