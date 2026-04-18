@@ -66,7 +66,7 @@ const Navbar = () => {
               width={270} 
               height={54} 
               priority 
-              className="w-auto h-auto max-w-[160px] sm:max-w-[140px] lg:max-w-[160px]"
+              className="w-auto h-auto max-w-[200px] sm:max-w-[140px] lg:max-w-[280px]"
             />
           </Link>
         </div>
@@ -89,7 +89,7 @@ const Navbar = () => {
               href={link.href}
               className={`${
                 link.isButton
-                  ? "bg-secondary text-gray-900 hover:bg-secondary/70 hover:shadow-md py-2.5 px-6 rounded-full font-bold transition-all hover:-translate-y-0.5 active:scale-95"
+                  ? "bg-primary text-gray-900 hover:bg-secondary/70 hover:shadow-md py-2.5 px-6 rounded-full font-bold transition-all hover:-translate-y-0.5 active:scale-95"
                   : `py-1.5 px-3 rounded-full relative transition-all text-gray-700 hover:text-gray-900 hover:bg-white/50 ${
                       pathname === link.href ? "bg-white shadow-sm font-semibold text-gray-900" : ""
                     }`

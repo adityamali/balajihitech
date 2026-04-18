@@ -6,6 +6,7 @@
   --primary: #dfba9f;
   --secondary: #f7ccdc;
   --tertiary: #fdf9af;
+  --hero: #e69053;
 }
 
 @media (prefers-color-scheme: dark) {
